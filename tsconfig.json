@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es6", // or your target version
+    "module": "commonjs", // or your desired module system
+    "jsx": "preserve", // enables JSX support
+    "strict": true, // enables strict type-checking
+    "esModuleInterop": true, // allows default imports from CommonJS modules
+    "skipLibCheck": true, // optional: skip checking of all declaration files (*.d.ts)
+    "forceConsistentCasingInFileNames": true, // optional: enforces consistent casing of file names
+    "baseUrl": "src",
+    "moduleResolution": "node",
+    "paths": {
+      "*": ["types/*"]               // Map all imports to the 'types' folder for resolution
+    }
+  },
+  "include": ["src", "types"]
+}
