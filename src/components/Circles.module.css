@@ -1,0 +1,60 @@
+.circlesContainer {
+  width: 100%;
+  position: relative;
+  min-height: inherit;
+  box-sizing: border-box;
+}
+
+.circleOne {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: visible;
+  transform: translate(-50%, -8%);
+}
+
+.circleTwo {
+  position: absolute;
+  overflow: visible;
+  transform: translate(0%, -8%);
+}
+.circleThree {
+  display: none;
+}
+.circleFour {
+  display: none;
+}
+.circleFive {
+  display: none;
+}
+
+.topSmallCircle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -110%);
+}
+
+.botSmallCircle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 10%);
+}
+
+.smolCircle {
+  width: 600px;
+  height: 600px;
+  background-color: transparent;
+  border: 0.5px solid #000000;
+  border-radius: 50%;
+}
+
+.bigCircle {
+  width: 1000px;
+  height: 1000px;
+  background-color: transparent;
+  border: 0.5px solid #000000;
+  border-radius: 50%;
+  margin: -50px;
+}
