@@ -7,13 +7,21 @@ interface CirclesProps {
 
 function Circles(props: CirclesProps) {
 
-  const circleOneClass = [styles.circleOne, styles.bigCircle].join(" ");
-  const circleTwoClass = [styles.circleTwo, styles.bigCircle].join(" ");
-  const circleThreeClass = [styles.circleThree, styles.bigCircle].join(" ");
-  const circleFourClass = [styles.circleFour, styles.bigCircle].join(" ");
-  const circleFiveClass = [styles.circleFive, styles.bigCircle].join(" ");
-  const circleTopClass = [styles.topSmallCircle, styles.smolCircle].join(" ");
-  const circleBotClass = [styles.botSmallCircle, styles.smolCircle].join(" ");
+  /** 
+   * the circles are arranged in such way:
+   *      top
+   * 1  2  3  4  5
+   *      bot
+   */     
+
+  const circleOneClass = [styles.circleOne, styles.bigCircle, props.animationStarted ? styles.moveLeft : ""].join(" ");
+  const circleTwoClass = [styles.circleTwo, styles.bigCircle, props.animationStarted ? styles.moveLeft : ""].join(" ");
+  const circleThreeClass = [styles.circleThree, styles.bigCircle, props.animationStarted ? styles.moveNowhere : ""].join(" ");
+  const circleFourClass = [styles.circleFour, styles.bigCircle, props.animationStarted ? styles.moveRight : ""].join(" ");
+  const circleFiveClass = [styles.circleFive, styles.bigCircle, props.animationStarted ? styles.moveRight : ""].join(" ");
+  const circleTopClass = [styles.topSmallCircle, styles.smolCircle, props.animationStarted ? styles.moveUp : ""].join(" ");
+  const circleBotClass = [styles.botSmallCircle, styles.smolCircle, props.animationStarted ? styles.moveDown : ""].join(" ");
+  const middleLinesClass = [styles.middleLines, props.animationStarted ? styles.moveNowhere : ""].join(" ");
 
   return (
     <div className={styles.circlesContainer}>
@@ -24,6 +32,7 @@ function Circles(props: CirclesProps) {
       <div className={circleFiveClass} />
       <div className={circleTopClass} />
       <div className={circleBotClass} />
+      <div className={middleLinesClass} />
     </div>
   );
 }
