@@ -100,28 +100,24 @@
 @keyframes moveToLeft {
   100% {
     transform: translate(-200%, -50%);
-    opacity: 0%;
   }
 }
 
 @keyframes moveToRight {
   100% {
     transform: translate(100%, -50%);
-    opacity: 0%;
   }
 }
 
 @keyframes moveToUp {
   100% {
     transform: translate(-50%, -150%);
-    opacity: 0%;
   }
 }
 
 @keyframes moveToDown {
   100% {
     transform: translate(-50%, 50%);
-    opacity: 0%;
   }
 }
 
@@ -131,6 +127,5 @@
   }
   100% {
     transform: translate(-50%, -50%) scale(2);
-    opacity: 0%;
   }
 }

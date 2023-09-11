@@ -15,15 +15,15 @@ function SplashScreen() {
     }, 3000);
   };
 
-  const textDynamicClasses = [styles.textContainer, animationStarted ? styles.textDisappearAnimation : ""].join(" ")
+  const splashDynamicClasses = [styles.splashContainer, animationStarted ? styles.splashDisappearAnimation : ""].join(" ")
 
   if (splashScreenOff) {
     return <div>Hello there!</div>;
   } else {
     return (
-      <div className={styles.splashContainer}>
+      <div className={splashDynamicClasses}>
         <Circles animationStarted={animationStarted} />
-        <div className={textDynamicClasses}>
+        <div className={styles.textContainer}>
           <h1>Panini Creator</h1>
           <button className={styles.button} onClick={handleBeginClick}>
             Begin

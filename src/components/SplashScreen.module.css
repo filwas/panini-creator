@@ -51,11 +51,11 @@ h1 {
   white-space: nowrap;
 }
 
-.textDisappearAnimation{
-    animation: textToDisappear 3s ease-in-out forwards;
+.splashDisappearAnimation{
+    animation: splashToDisappear 3s ease-in-out forwards;
 }
 
-@keyframes textToDisappear {
+@keyframes splashToDisappear {
     100%{
         opacity: 0;
     }
