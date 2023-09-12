@@ -14,14 +14,14 @@ function Circles(props: CirclesProps) {
    *      bot
    */     
 
-  const circleOneClass = [styles.circleOne, styles.bigCircle, props.animationStarted ? styles.moveLeft : ""].join(" ");
-  const circleTwoClass = [styles.circleTwo, styles.bigCircle, props.animationStarted ? styles.moveLeft : ""].join(" ");
-  const circleThreeClass = [styles.circleThree, styles.bigCircle, props.animationStarted ? styles.moveNowhere : ""].join(" ");
-  const circleFourClass = [styles.circleFour, styles.bigCircle, props.animationStarted ? styles.moveRight : ""].join(" ");
-  const circleFiveClass = [styles.circleFive, styles.bigCircle, props.animationStarted ? styles.moveRight : ""].join(" ");
-  const circleTopClass = [styles.topSmallCircle, styles.smolCircle, props.animationStarted ? styles.moveUp : ""].join(" ");
-  const circleBotClass = [styles.botSmallCircle, styles.smolCircle, props.animationStarted ? styles.moveDown : ""].join(" ");
-  const middleLinesClass = [styles.middleLines, props.animationStarted ? styles.moveNowhere : ""].join(" ");
+  const circleOneClass = [styles.circleOnePos, styles.bigCircleDraw, props.animationStarted ? styles.moveLeft : ""].join(" ");
+  const circleTwoClass = [styles.circleTwoPos, styles.bigCircleDraw, props.animationStarted ? styles.moveLeft : ""].join(" ");
+  const circleThreeClass = [styles.circleThreePos, styles.bigCircleDraw, props.animationStarted ? styles.moveNowhere : ""].join(" ");
+  const circleFourClass = [styles.circleFourPos, styles.bigCircleDraw, props.animationStarted ? styles.moveRight : ""].join(" ");
+  const circleFiveClass = [styles.circleFivePos, styles.bigCircleDraw, props.animationStarted ? styles.moveRight : ""].join(" ");
+  const circleTopClass = [styles.topSmallCirclePos, styles.smolCircleDraw, props.animationStarted ? styles.moveUp : ""].join(" ");
+  const circleBotClass = [styles.botSmallCirclePos, styles.smolCircleDraw, props.animationStarted ? styles.moveDown : ""].join(" ");
+  const middleLinesClass = [styles.middleLinesPos, props.animationStarted ? styles.moveNowhere : ""].join(" ");
 
   return (
     <div className={styles.circlesContainer}>
