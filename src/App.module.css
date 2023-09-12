@@ -1,6 +1,8 @@
 .mainContainer{
   background-color: white;
   min-width: 1440px;
+  display: flex;
+  justify-content: center;
 }
 
 
