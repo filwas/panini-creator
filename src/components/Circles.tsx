@@ -21,7 +21,7 @@ function Circles(props: CirclesProps) {
   const circleFiveClass = [styles.circleFivePos, styles.bigCircleDraw, props.animationStarted ? styles.moveRight : ""].join(" ");
   const circleTopClass = [styles.topSmallCirclePos, styles.smolCircleDraw, props.animationStarted ? styles.moveUp : ""].join(" ");
   const circleBotClass = [styles.botSmallCirclePos, styles.smolCircleDraw, props.animationStarted ? styles.moveDown : ""].join(" ");
-  const middleLinesClass = [styles.middleLinesPos, props.animationStarted ? styles.moveNowhere : ""].join(" ");
+  const middleLinesClass = [styles.middleLines, props.animationStarted ? styles.moveNowhere : ""].join(" ");
 
   return (
     <div className={styles.circlesContainer}>
