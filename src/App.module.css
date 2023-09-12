@@ -1,6 +1,6 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.mainContainer{
+  background-color: white;
+  min-width: 1440px;
 }
+
+

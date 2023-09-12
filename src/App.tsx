@@ -1,11 +1,14 @@
-import React from "react";
-import styles from "./App.module.css"
+import React, { useState } from "react";
+import styles from "./App.module.css";
+import SplashScreen from "./components/SplashScreen";
+
 
 function App() {
 
+
   return (
-    <div className={styles.baa}>
-      <h1>Panini Creator</h1>
+    <div className={styles.mainContainer}>
+      <SplashScreen />
     </div>
   );
 }
