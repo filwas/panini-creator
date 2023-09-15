@@ -1,0 +1,29 @@
+.dropdownWrapper {
+  font-family: Oxygen Mono;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: center;
+  text-transform: uppercase;
+  color: black;
+  width: 250px;
+  height: 35px;
+  border: 0.5px solid black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+
+}
+
+.pointerArrow{
+    width: 13.79px;
+    height: 13.79px;
+    border-top: 0.5px solid black;
+    border-left: 0.5px solid black;
+    transform: rotate(225deg);
+    margin: 1px;
+}
