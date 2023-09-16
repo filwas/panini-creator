@@ -2,9 +2,9 @@ import React from "react";
 import styles from "./FormScreen.module.css";
 import "@fontsource/instrument-serif";
 import "@fontsource/oxygen-mono";
-import Dices from "./icons/Dices";
-import FormModule from "./FormModule";
-import Dropdown from "./selectorComponents/Dropdown";
+import Dices from "../icons/Dices";
+import FormModule from "../modularForm/FormModule";
+import Dropdown from "../selectorComponents/Dropdown";
 
 function FormScreen() {
   return (

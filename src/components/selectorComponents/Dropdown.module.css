@@ -1,3 +1,10 @@
+.rectangleStyle {
+  width: 250px;
+  height: 35px;
+  border: 0.5px solid black;
+  background-color: white;
+}
+
 .dropdownWrapper {
   font-family: Oxygen Mono;
   font-size: 12px;
@@ -7,23 +14,46 @@
   text-align: center;
   text-transform: uppercase;
   color: black;
-  width: 250px;
-  height: 35px;
-  border: 0.5px solid black;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: nowrap;
   justify-content: space-around;
   align-items: center;
   align-content: center;
-
+  position: relative;
+  cursor: pointer;
 }
 
-.pointerArrow{
-    width: 13.79px;
-    height: 13.79px;
-    border-top: 0.5px solid black;
-    border-left: 0.5px solid black;
-    transform: rotate(225deg);
-    margin: 1px;
+.firstBarWrapper {
+  position: relative;
+}
+
+
+.dropdownToggle {
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+
+.dropdownArrow {
+  position: absolute;
+  top: 14px;
+  left: 222px;
+  pointer-events: none;
+}
+
+.dropdownArrowToggled{
+  transform: rotate(180deg);
+}
+
+.dropdownOptionsWrapper {
+  top: 36px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdownOption {
+  margin-top: -0.5px;
 }

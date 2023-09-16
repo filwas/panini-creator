@@ -7,6 +7,7 @@ interface DropdownArrowProps {
 const DropdownArrow: React.FC<DropdownArrowProps> = (props) => {
   return (
     <svg
+    className={props.className}
       width="15"
       height="9"
       viewBox="0 0 15 9"
