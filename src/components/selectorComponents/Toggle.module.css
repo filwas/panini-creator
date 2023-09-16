@@ -1,0 +1,28 @@
+.toggleWrapper{
+    width: 27px;
+    height: 17px;
+    border: 0.5px solid black;
+    border-radius: 30px;
+    background-color: white;
+    position: relative;
+}
+
+.circle{
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border: 0.5px solid black;
+    border-radius: 100%;
+    top: 4px;
+    transition: left 300ms ease-in-out, background-color 300ms ease-in-out;
+}
+
+.circleOn{
+    background-color: black;
+    left: 14px;
+}
+
+.circleOff{
+    background-color: transparent;
+    left: 4px;
+}
