@@ -5,7 +5,7 @@ import "@fontsource/oxygen-mono";
 
 interface IngredientProps {
   name: string;
-  selector: 'carousel' | 'dropdown' | 'multiselect' | 'checkbox';
+  selector: 'carousel' | 'dropdown' | 'multiselect' | 'checkbox' | 'radial';
   toggler: boolean;
   adder: boolean;
   options: string[];

@@ -5,6 +5,7 @@
     border-radius: 30px;
     background-color: white;
     position: relative;
+    cursor: pointer;
 }
 
 .circle{
@@ -23,6 +24,6 @@
 }
 
 .circleOff{
-    background-color: transparent;
+    background-color: white;
     left: 4px;
 }

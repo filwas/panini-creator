@@ -5,6 +5,7 @@ import "@fontsource/oxygen-mono";
 import Dropdown from "../selectorComponents/Dropdown";
 import Carousel from "../selectorComponents/Carousel";
 import Toggle from "../selectorComponents/Toggle";
+import Adder from "../selectorComponents/Adder";
 
 import  {cheeseVariants}  from "../../data/cheese.js";
 import  {breadVariants}  from "../../data/bread.js";
@@ -19,6 +20,11 @@ function FormModule(props: FormModuleProps) {
     console.log(currentState);
   } 
 
+  function clickHandler(){
+    console.log('i was clicked');
+    
+  }
+
   return (
     <div className={styles.moduleTopWrapper}>
       <div className={styles.moduleTitle}>{props.name}</div>
@@ -26,7 +32,8 @@ function FormModule(props: FormModuleProps) {
       <Dropdown dropdownOptions={cheeseVariants}></Dropdown>
       <Carousel carouselOptions={breadVariants}></Carousel>
       <Toggle onStateChange={toggleStater} />
-      <div></div>
+        <Adder direction="add" onClick={clickHandler}/>
+        <Adder direction="subtract" onClick={clickHandler}/>
     </div>
   );
 }

@@ -58,3 +58,7 @@
 .dropdownOption {
   margin-top: -0.5px;
 }
+
+.dropdownOption:hover {
+  background-color: #FBFBFB;
+}
