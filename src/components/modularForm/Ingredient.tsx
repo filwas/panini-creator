@@ -5,9 +5,10 @@ import "@fontsource/oxygen-mono";
 
 interface IngredientProps {
   name: string;
-  selector: 'slider' | 'dropdown' | 'multiselect' | 'checkbox';
+  selector: 'carousel' | 'dropdown' | 'multiselect' | 'checkbox';
   toggler: boolean;
   adder: boolean;
+  options: string[];
 }
 
 function Ingredient(props: IngredientProps) {
