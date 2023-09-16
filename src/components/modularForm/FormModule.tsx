@@ -6,23 +6,22 @@ import Dropdown from "../selectorComponents/Dropdown";
 import Carousel from "../selectorComponents/Carousel";
 import Toggle from "../selectorComponents/Toggle";
 import Adder from "../selectorComponents/Adder";
+import Checkbox from "../selectorComponents/Checkbox";
 
-import  {cheeseVariants}  from "../../data/cheese.js";
-import  {breadVariants}  from "../../data/bread.js";
+import { cheeseVariants } from "../../data/cheese.js";
+import { breadVariants } from "../../data/bread.js";
 
 interface FormModuleProps {
   name: string;
 }
 
 function FormModule(props: FormModuleProps) {
-
-  function toggleStater(currentState: boolean){
+  function toggleStater(currentState: boolean) {
     console.log(currentState);
-  } 
+  }
 
-  function clickHandler(){
-    console.log('i was clicked');
-    
+  function clickHandler() {
+    console.log("i was clicked");
   }
 
   return (
@@ -32,8 +31,9 @@ function FormModule(props: FormModuleProps) {
       <Dropdown dropdownOptions={cheeseVariants}></Dropdown>
       <Carousel carouselOptions={breadVariants}></Carousel>
       <Toggle onStateChange={toggleStater} />
-        <Adder direction="add" onClick={clickHandler}/>
-        <Adder direction="subtract" onClick={clickHandler}/>
+      <Adder direction="add" onClick={clickHandler} />
+      <Adder direction="subtract" onClick={clickHandler} />
+      <Checkbox onStateChange={toggleStater}/>
     </div>
   );
 }
