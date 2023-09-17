@@ -7,6 +7,7 @@ import Carousel from "../selectorComponents/Carousel";
 import Toggle from "../selectorComponents/Toggle";
 import Adder from "../selectorComponents/Adder";
 import Checkbox from "../selectorComponents/Checkbox";
+import Radial from "../selectorComponents/Radial";
 
 import { cheeseVariants } from "../../data/cheese.js";
 import { breadVariants } from "../../data/bread.js";
@@ -34,6 +35,7 @@ function FormModule(props: FormModuleProps) {
       <Adder direction="add" onClick={clickHandler} />
       <Adder direction="subtract" onClick={clickHandler} />
       <Checkbox onStateChange={toggleStater}/>
+      <Radial onStateChange={toggleStater}/>
     </div>
   );
 }

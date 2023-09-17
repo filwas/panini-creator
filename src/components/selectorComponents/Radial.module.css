@@ -1,0 +1,17 @@
+.radialWrapper{
+    width: 14px;
+    height: 14px;
+    border: 0.5px solid black;
+    border-radius: 30px;
+    position: relative;
+}
+
+.radialDot{
+    width: 7px;
+    height: 7px;
+    background-color: black;
+    border-radius: 40px;
+    position: absolute;
+    top: 3.5px;
+    left: 3.5px;
+}
