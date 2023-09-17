@@ -9,6 +9,7 @@ import Adder from "../selectorComponents/Adder";
 import Checkbox from "../selectorComponents/Checkbox";
 import Radial from "../selectorComponents/Radial";
 
+import Multiselect from "../selectorComponents/Multiselect";
 import { cheeseVariants } from "../../data/cheese.js";
 import { breadVariants } from "../../data/bread.js";
 
@@ -36,6 +37,7 @@ function FormModule(props: FormModuleProps) {
       <Adder direction="subtract" onClick={clickHandler} />
       <Checkbox onStateChange={toggleStater}/>
       <Radial onStateChange={toggleStater}/>
+      <Multiselect text="Cucumber" onStateChange={toggleStater}/>
     </div>
   );
 }
