@@ -7,7 +7,7 @@ interface RadialProps {
   onStateChange?: (newState: boolean) => void;
 }
 
-const Radial: React.FC<RadialProps> = (props) => {
+const Radial = (props: RadialProps) => {
   const [state, setState] = useState(true);
 
   const clickHandler = () => {

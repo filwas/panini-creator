@@ -3,7 +3,7 @@ import styles from "./FormScreen.module.css";
 import "@fontsource/instrument-serif";
 import "@fontsource/oxygen-mono";
 import Dices from "../icons/Dices";
-import FormModule from "../modularForm/FormModule";
+import FormModuleBase from "../modularForm/FormModuleBase";
 import Dropdown from "../selectorComponents/Dropdown";
 
 function FormScreen() {
@@ -17,8 +17,7 @@ function FormScreen() {
         </button>
       </div>
       <div className={styles.formElementsContainer}>
-        {/*these divs below will become react elements later*/}
-        <FormModule name="Configure Base" />
+        <FormModuleBase name="Configure Base" />
 
       </div>
     </div>

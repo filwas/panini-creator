@@ -6,7 +6,7 @@ interface CarouselArrowProps {
   onClick?: (event: React.MouseEvent<SVGElement, MouseEvent>) => void;
 }
 
-const CarouselArrow: React.FC<CarouselArrowProps> = (props) => {
+const CarouselArrow = (props: CarouselArrowProps) => {
   return (
     <svg
       className={props.className}

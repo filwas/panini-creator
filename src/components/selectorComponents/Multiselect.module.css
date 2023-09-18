@@ -1,4 +1,17 @@
-.multiselectTopWrap {
+.multiTopWrap {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  max-width: 350px;
+  display: inline-flex;
+  gap: 15px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+}
+
+.multiItemWrap {
   color: black;
   font-family: Oxygen Mono;
   font-size: 12px;
@@ -12,6 +25,8 @@
   cursor: pointer;
 }
 
+
+
 .on{
     border-color: black;
     background-color: white;
@@ -20,3 +35,4 @@
 .off{
     background-color: #fbfbfb;
 }
+

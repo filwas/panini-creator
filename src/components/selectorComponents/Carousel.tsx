@@ -9,7 +9,7 @@ interface CarouselProps {
   carouselOptions: string[];
 }
 
-const Carousel: React.FC<CarouselProps> = (props) => {
+const Carousel = (props: CarouselProps) => {
   const [optionIndex, setOptionIndex] = useState(0);
 
   const carouselWrapper = classNames(styles.carouselWrapper);

@@ -4,7 +4,7 @@ interface DropdownArrowProps {
   className?: string;
 }
 
-const DropdownArrow: React.FC<DropdownArrowProps> = (props) => {
+const DropdownArrow = (props: DropdownArrowProps) => {
   return (
     <svg
       className={props.className}

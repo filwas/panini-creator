@@ -6,7 +6,7 @@ interface AdderProps {
     onClick: () => void;
 }
 
-const Adder: React.FC<AdderProps> = (props) => {
+const Adder = (props: AdderProps) => {
     return (
         <div className={styles.adderWrapper} onClick={props.onClick}>
             <div className={styles.horizontalBar} />

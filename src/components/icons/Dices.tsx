@@ -1,11 +1,10 @@
-import React from 'react';
+import React from "react";
 
 interface DicesProps {
-    className?: string;
+  className?: string;
 }
 
-
-const Dices: React.FC<DicesProps> = (props) => {
+const Dices = (props: DicesProps) => {
   return (
     <svg
       className={props.className}
@@ -43,5 +42,3 @@ const Dices: React.FC<DicesProps> = (props) => {
 };
 
 export default Dices;
-
-

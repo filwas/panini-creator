@@ -7,7 +7,7 @@ interface ToggleProps {
   onStateChange?: (newState: boolean) => void;
 }
 
-const Toggle: React.FC<ToggleProps> = (props) => {
+const Toggle = (props: ToggleProps) => {
   const [state, setState] = useState(true);
 
   const clickHandler = () => {

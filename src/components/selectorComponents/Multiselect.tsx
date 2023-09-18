@@ -3,25 +3,39 @@ import styles from "./Multiselect.module.css";
 import classNames from "classnames";
 
 interface MultiselectProps {
-  text: string;
+  multiOptions: string[];
   initialState?: boolean;
   onStateChange?: (newState: boolean) => void;
 }
 
-const Multiselect: React.FC<MultiselectProps> = (props) => {
-  const [state, setState] = useState(true);
+const Multiselect = (props: MultiselectProps) => {
+  return (
+    <div className={styles.multiTopWrap}>
+      {props.multiOptions.map((item, index) => (
+        <MultiselectItem text={item} />
+      ))}
+    </div>
+  );
+};
+
+export default Multiselect;
+
+
+
+interface MultiselectItemProps {
+  text: string;
+}
+
+const MultiselectItem = (props: MultiselectItemProps) => {
+  const [state, setState] = useState(false);
 
   const clickHandler = () => {
     const newState = !state;
     setState(newState);
-
-    if (props.onStateChange) {
-      props.onStateChange(newState);
-    }
   };
 
   const selectStyle = classNames(
-    styles.multiselectTopWrap,
+    styles.multiItemWrap,
     state ? styles.on : styles.off
   );
 
@@ -31,5 +45,3 @@ const Multiselect: React.FC<MultiselectProps> = (props) => {
     </div>
   );
 };
-
-export default Multiselect;

@@ -6,7 +6,7 @@ interface CheckboxProps {
     onStateChange?: (newState: boolean) => void;
 }
 
-const Checkbox: React.FC<CheckboxProps> = (props) => {
+const Checkbox = (props: CheckboxProps) => {
     const [state, setState] = useState(true);
 
     const clickHandler = () => {

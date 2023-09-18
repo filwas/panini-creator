@@ -4,7 +4,7 @@ interface GrainProps {
   className?: string;
 }
 
-const Grain: React.FC<GrainProps> = (props) => {
+const Grain = (props: GrainProps) => {
   return (
     <svg
       className={props.className}

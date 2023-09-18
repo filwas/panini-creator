@@ -8,7 +8,7 @@ interface DropdownProps {
   dropdownOptions: string[];
 }
 
-function Dropdown(props: DropdownProps) {
+function Dropdown (props: DropdownProps) {
   const [selectedOption, setSelectedOption] = useState<string>(props.dropdownOptions[0]);
   const [isOpen, setIsOpen] = useState(false);
 

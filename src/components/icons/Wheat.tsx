@@ -4,7 +4,7 @@ interface WheatProps {
   className?: string;
 }
 
-const Wheat: React.FC<WheatProps> = (props) => {
+const Wheat = (props: WheatProps) => {
   return (
     <svg
       className={props.className}
