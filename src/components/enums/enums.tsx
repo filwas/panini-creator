@@ -5,3 +5,4 @@ export enum SelectorType{
     Checkbox = "checkbox",
     Radial = "radial",
 }
+

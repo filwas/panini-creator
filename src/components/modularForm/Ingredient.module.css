@@ -61,4 +61,5 @@ flex-direction: column;
   width: 310px;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 5px;
 }
