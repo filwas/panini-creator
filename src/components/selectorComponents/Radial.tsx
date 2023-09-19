@@ -3,26 +3,45 @@ import styles from "./Radial.module.css";
 import classNames from "classnames";
 
 interface RadialProps {
-  initialState?: boolean;
-  onStateChange?: (newState: boolean) => void;
+  radialOptions: string[];
 }
 
 const Radial = (props: RadialProps) => {
-  const [state, setState] = useState(true);
+  const [currentSelected, setcurrentSelected] = useState(0)
 
-  const clickHandler = () => {
-    const newState = !state;
-    setState(newState);
-
-    if (props.onStateChange) {
-      props.onStateChange(newState);
-    }
+  const clickHandler = (index: number) => {    
+    setcurrentSelected(index)
   };
+
   return (
-    <div className={styles.radialWrapper} onClick={clickHandler}>
-      <div className={classNames(state && styles.radialDot)} />
+    <div className={styles.radialTopWrapper}>
+      {props.radialOptions.map((item, index) => (
+        <SingleRadial text={item} initialState={index == currentSelected ? true : false}  onClick={()=>{clickHandler(index)}}/>
+      ))}
     </div>
   );
 };
 
 export default Radial;
+
+interface SingleRadialProps {
+  initialState: boolean;
+  text: string;
+  onClick: ()=>void;
+}
+
+const SingleRadial = (props: SingleRadialProps) => {
+
+  const clickHandler = () => {
+    props.onClick()
+  };
+
+  return (
+    <div className={styles.radialNameWrap} onClick={clickHandler}>
+      <div className={styles.radialCircle} >
+        <div className={classNames(props.initialState && styles.radialDot)} />
+      </div>
+      {props.text}
+    </div>
+  );
+};

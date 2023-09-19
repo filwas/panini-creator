@@ -88,8 +88,8 @@ function selectorHelper(selector: string, options: string[]) {
     case "multiselect":
       return <Multiselect multiOptions={options} />;
     case "checkbox":
-      return <Checkbox />;
+      return <Checkbox checkboxOptions={options}/>;
     case "radial":
-      return <Radial />;
+      return <Radial radialOptions={options}/>;
   }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./FormModuleBase.module.css";
+import styles from "./FormModule.module.css";
 import "@fontsource/instrument-serif";
 import "@fontsource/oxygen-mono";
 

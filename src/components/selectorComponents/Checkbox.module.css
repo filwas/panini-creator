@@ -1,17 +1,35 @@
-.checkboxWrapper{
-    width: 16px;
-    height: 16px;
-    border: 0.5px solid black;
-    background-color: white;
-    position: relative;
-    cursor: pointer;
+.checkboxTextWrap {
+  color: black;
+  font-family: Oxygen Mono;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  width: 150px;
 }
 
-.innerSquare{
-    width: 9px;
-    height: 9px;
-    background-color: black;
-    position: absolute;
-    top: 3.5px;
-    left: 3.5px;
+.textPointer {
+  cursor: pointer;
+}
+
+.checkboxBoxWrap {
+  width: 16px;
+  height: 16px;
+  border: 0.5px solid black;
+  background-color: white;
+  position: relative;
+  cursor: pointer;
+}
+
+.innerSquare {
+  width: 9px;
+  height: 9px;
+  background-color: black;
+  position: absolute;
+  top: 3.5px;
+  left: 3.5px;
 }
