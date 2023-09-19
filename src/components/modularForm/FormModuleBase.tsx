@@ -3,6 +3,8 @@ import styles from "./FormModuleBase.module.css";
 import "@fontsource/instrument-serif";
 import "@fontsource/oxygen-mono";
 
+import { SelectorType } from "../enums/enums";
+
 import { breadVariants } from "../../data/bread.js";
 import { cheeseVariants } from "../../data/cheese.js";
 import { meatVariants } from "../../data/meat.js";
@@ -19,28 +21,28 @@ function FormModuleBase(props: FormModuleBaseProps) {
   return (
     <div className={styles.moduleTopWrapper}>
       <div className={styles.moduleTitle}>{props.name}</div>
-      <Ingredient name="Bread" selector="carousel" options={breadVariants} />
+      <Ingredient name="Bread" selector={SelectorType.Carousel} options={breadVariants} />
       <Ingredient
         name="Cheese"
-        selector="dropdown"
+        selector={SelectorType.Dropdown}
         options={cheeseVariants}
         togglable={true}
       />
       <Ingredient
         name="Meat"
-        selector="dropdown"
+        selector={SelectorType.Dropdown}
         options={meatVariants}
         togglable={true}
       />
       <Ingredient
         name="Dressing"
-        selector="carousel"
+        selector={SelectorType.Carousel}
         options={dressingVariants}
         togglable={true}
       />
       <Ingredient
         name="Vegetable"
-        selector="multiselect"
+        selector={SelectorType.Multiselect}
         options={vegetableVariants}
       />
       <div className={styles.lastMargin} />

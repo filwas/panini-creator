@@ -10,10 +10,11 @@ import Checkbox from "../selectorComponents/Checkbox";
 import Radial from "../selectorComponents/Radial";
 import Multiselect from "../selectorComponents/Multiselect";
 import classNames from "classnames";
+import { SelectorType } from "../enums/enums";
 
 interface IngredientProps {
   name: string;
-  selector: "carousel" | "dropdown" | "multiselect" | "checkbox" | "radial";
+  selector: SelectorType;
   options: string[];
   togglable?: boolean;
 }
