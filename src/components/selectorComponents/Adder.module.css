@@ -7,6 +7,7 @@
     position: relative;
     transition: background-color 300ms;
     cursor: pointer;
+    margin-top: 13px;
 }
 
 .horizontalBar{

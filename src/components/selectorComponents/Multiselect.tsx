@@ -20,8 +20,6 @@ const Multiselect = (props: MultiselectProps) => {
 
 export default Multiselect;
 
-
-
 interface MultiselectItemProps {
   text: string;
 }

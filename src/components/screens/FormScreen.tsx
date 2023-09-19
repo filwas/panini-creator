@@ -4,7 +4,6 @@ import "@fontsource/instrument-serif";
 import "@fontsource/oxygen-mono";
 import Dices from "../icons/Dices";
 import FormModuleBase from "../modularForm/FormModuleBase";
-import Dropdown from "../selectorComponents/Dropdown";
 
 function FormScreen() {
   return (
@@ -18,7 +17,6 @@ function FormScreen() {
       </div>
       <div className={styles.formElementsContainer}>
         <FormModuleBase name="Configure Base" />
-
       </div>
     </div>
   );

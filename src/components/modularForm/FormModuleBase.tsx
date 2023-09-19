@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./FormModuleBase.module.css";
 import "@fontsource/instrument-serif";
 import "@fontsource/oxygen-mono";
@@ -16,16 +16,33 @@ interface FormModuleBaseProps {
 }
 
 function FormModuleBase(props: FormModuleBaseProps) {
-
-
   return (
     <div className={styles.moduleTopWrapper}>
       <div className={styles.moduleTitle}>{props.name}</div>
       <Ingredient name="Bread" selector="carousel" options={breadVariants} />
-      <Ingredient name="Cheese" selector="dropdown" options={cheeseVariants} />
-      <Ingredient name="Meat" selector="dropdown" options={meatVariants} />
-      <Ingredient name="Dressing" selector="carousel" options={dressingVariants} />
-      <Ingredient name="Vegetable" selector="multiselect" options={vegetableVariants} />
+      <Ingredient
+        name="Cheese"
+        selector="dropdown"
+        options={cheeseVariants}
+        togglable={true}
+      />
+      <Ingredient
+        name="Meat"
+        selector="dropdown"
+        options={meatVariants}
+        togglable={true}
+      />
+      <Ingredient
+        name="Dressing"
+        selector="carousel"
+        options={dressingVariants}
+        togglable={true}
+      />
+      <Ingredient
+        name="Vegetable"
+        selector="multiselect"
+        options={vegetableVariants}
+      />
       <div className={styles.lastMargin} />
     </div>
   );

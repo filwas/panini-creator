@@ -6,9 +6,9 @@
   line-height: 23px;
   letter-spacing: 0em;
   text-align: left;
+  
 
   display: flex;
-  align-items: center;
   align-content: center;
   flex-wrap: nowrap;
   flex-direction: row;
@@ -19,7 +19,17 @@
   border-top: 0.5px solid black;
   margin-top: 10px;
 
+  align-items: flex-start;
+
   user-select: none;
+  padding-top: 15px;
+}
+
+.nameToggleWrap{
+  margin-top: 13px;
+  width: 150px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .name {
@@ -27,3 +37,28 @@
   height: 100%;
 }
 
+.carouselSeparator{
+  position: absolute;
+  width: 70px;
+  height: 0.5px;
+  background-color: black;
+  margin-top: 3px;
+  margin-left: 150px;
+}
+
+.adderWrap{
+display: flex;
+flex-direction: column;
+
+}
+
+.toggleOff{
+  pointer-events: none;
+  display: none;
+}
+
+.singleAdder{
+  width: 310px;
+  display: flex;
+  justify-content: space-between;
+}
