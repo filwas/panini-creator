@@ -79,17 +79,17 @@ function Ingredient(props: IngredientProps) {
 
 export default Ingredient;
 
-function selectorHelper(selector: string, options: string[]) {
+function selectorHelper(selector: SelectorType, options: string[]) {
   switch (selector) {
-    case "carousel":
+    case SelectorType.Carousel:
       return <Carousel carouselOptions={options} />;
-    case "dropdown":
+    case SelectorType.Dropdown:
       return <Dropdown dropdownOptions={options} />;
-    case "multiselect":
+    case SelectorType.Multiselect:
       return <Multiselect multiOptions={options} />;
-    case "checkbox":
+    case SelectorType.Checkbox:
       return <Checkbox />;
-    case "radial":
+    case SelectorType.Radial:
       return <Radial />;
   }
 }

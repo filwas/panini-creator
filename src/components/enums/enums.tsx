@@ -6,3 +6,7 @@ export enum SelectorType{
     Radial = "radial",
 }
 
+export enum Direction{
+    Left = "left",
+    Right = "right"
+}
