@@ -1,17 +1,45 @@
-.radialWrapper{
-    width: 14px;
-    height: 14px;
-    border: 0.5px solid black;
-    border-radius: 30px;
-    position: relative;
+.radialTopWrapper {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  max-width: 350px;
+  display: inline-flex;
+  gap: 15px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
 }
 
-.radialDot{
-    width: 7px;
-    height: 7px;
-    background-color: black;
-    border-radius: 40px;
-    position: absolute;
-    top: 3.5px;
-    left: 3.5px;
+.radialNameWrap {
+  color: black;
+  font-family: Oxygen Mono;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.radialCircle {
+  margin-right: 5px;
+  width: 14px;
+  height: 14px;
+  border: 0.5px solid black;
+  border-radius: 30px;
+  position: relative;
+}
+
+.radialDot {
+  width: 7px;
+  height: 7px;
+  background-color: black;
+  border-radius: 40px;
+  position: absolute;
+  top: 3.5px;
+  left: 3.5px;
 }

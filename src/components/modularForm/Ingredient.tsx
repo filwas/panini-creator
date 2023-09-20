@@ -59,7 +59,7 @@ function Ingredient(props: IngredientProps) {
                 }}
               />
               {selectorHelper(props.selector, props.options)}
-              {props.selector == "carousel" && index != 0 && (
+              {props.selector == SelectorType.Carousel && index != 0 && (
                 <div className={styles.carouselSeparator} />
               )}
             </div>
@@ -88,8 +88,8 @@ function selectorHelper(selector: SelectorType, options: string[]) {
     case SelectorType.Multiselect:
       return <Multiselect multiOptions={options} />;
     case SelectorType.Checkbox:
-      return <Checkbox />;
+      return <Checkbox checkboxOptions={options}/>;
     case SelectorType.Radial:
-      return <Radial />;
+      return <Radial radialOptions={options}/>;
   }
 }
