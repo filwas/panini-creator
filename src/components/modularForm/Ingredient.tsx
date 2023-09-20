@@ -59,7 +59,7 @@ function Ingredient(props: IngredientProps) {
                 }}
               />
               {selectorHelper(props.selector, props.options)}
-              {props.selector == "carousel" && index != 0 && (
+              {props.selector == SelectorType.Carousel && index != 0 && (
                 <div className={styles.carouselSeparator} />
               )}
             </div>
@@ -79,17 +79,17 @@ function Ingredient(props: IngredientProps) {
 
 export default Ingredient;
 
-function selectorHelper(selector: string, options: string[]) {
+function selectorHelper(selector: SelectorType, options: string[]) {
   switch (selector) {
-    case "carousel":
+    case SelectorType.Carousel:
       return <Carousel carouselOptions={options} />;
-    case "dropdown":
+    case SelectorType.Dropdown:
       return <Dropdown dropdownOptions={options} />;
-    case "multiselect":
+    case SelectorType.Multiselect:
       return <Multiselect multiOptions={options} />;
-    case "checkbox":
+    case SelectorType.Checkbox:
       return <Checkbox checkboxOptions={options}/>;
-    case "radial":
+    case SelectorType.Radial:
       return <Radial radialOptions={options}/>;
   }
 }

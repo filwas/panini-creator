@@ -4,6 +4,7 @@ import classNames from "classnames";
 import CarouselArrow from "../icons/CarouselArrow";
 import Grain from "../icons/Grain";
 import Wheat from "../icons/Wheat";
+import { Direction } from "../enums/enums";
 
 interface CarouselProps {
   carouselOptions: string[];
@@ -15,20 +16,19 @@ const Carousel = (props: CarouselProps) => {
   const carouselWrapper = classNames(styles.carouselWrapper);
   const textWrapper = classNames(styles.textWrapper);
 
-  const arrowClick = (direction: string) => {
-    if (direction == "left") {
+  const arrowClick = (direction: Direction) => {
+    if (direction == Direction.Left) {
       setOptionIndex((prevOptionIndex) =>
         prevOptionIndex === 0
           ? props.carouselOptions.length - 1
           : prevOptionIndex - 1
       );
-    } else if (direction == "right") {
+    } else if (direction == Direction.Right) {
       setOptionIndex((prevOptionIndex) =>
         prevOptionIndex === props.carouselOptions.length - 1
           ? 0
           : prevOptionIndex + 1
       );
-    } else {
     }
   };
 
@@ -39,8 +39,8 @@ const Carousel = (props: CarouselProps) => {
     <div className={carouselWrapper}>
       <CarouselArrow
         className={styles.genericArrow}
-        direction="left"
-        onClick={() => arrowClick("left")}
+        direction={Direction.Left}
+        onClick={() => arrowClick(Direction.Left)}
       />
       <div className={textWrapper}>
         {grain && <Grain />}
@@ -49,8 +49,8 @@ const Carousel = (props: CarouselProps) => {
       </div>
       <CarouselArrow
         className={styles.genericArrow}
-        direction="right"
-        onClick={() => arrowClick("right")}
+        direction={Direction.Right}
+        onClick={() => arrowClick(Direction.Right)}
       />
     </div>
   );

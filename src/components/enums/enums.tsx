@@ -5,3 +5,8 @@ export enum SelectorType{
     Checkbox = "checkbox",
     Radial = "radial",
 }
+
+export enum Direction{
+    Left = "left",
+    Right = "right"
+}
