@@ -32,6 +32,7 @@ const SingleCheckbox = (props: SingleCheckboxProps) => {
   //the text and the checkbox itself, but not the space between them
   return (
     <div className={styles.checkboxTextWrap} >
+      <input type="checkbox" hidden={true}/>
       <div className={styles.textPointer} onClick={clickHandler}>{props.text}</div>
       <div className={styles.checkboxBoxWrap} onClick={clickHandler}>
         {state && <div className={styles.innerSquare} />}
