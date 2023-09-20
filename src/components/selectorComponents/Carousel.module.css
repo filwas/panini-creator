@@ -1,0 +1,33 @@
+.carouselWrapper{
+    height: 35px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: Oxygen Mono;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: center;
+    text-transform: uppercase;
+    color: black;
+    margin-top: 6px;
+}
+
+.textWrapper{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.genericArrow{
+    cursor: pointer;
+}
+
+.reverseArrow{
+    transform: rotate(180deg);
+}

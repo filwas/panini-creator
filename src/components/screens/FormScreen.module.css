@@ -6,6 +6,8 @@
   justify-content: center;
   align-items: center;
   width: 650px;
+  background-color: transparent;
+  margin-top: 75px;
 }
 
 .header {
@@ -23,6 +25,8 @@
 
 .randomizeButton {
   font-family: Oxygen Mono;
+  display: flex;
+  align-items: center;
   font-size: 12px;
   font-weight: 400;
   line-height: 16px;
@@ -30,23 +34,40 @@
   text-align: left;
   text-transform: uppercase;
   color: black;
-  background-color: transparent;
-  border: 2px solid transparent;
+  background-color: white;
+  border: 1px solid transparent;
   padding-top: 14px;
   padding-bottom: 14px;
   padding-left: 20px;
   padding-right: 20px;
   z-index: 2;
   transition: ease-in-out 0.3s;
+  position: relative;
 }
 
 .randomizeButton:hover {
   transition: ease-in-out 0.3s;
   border: 1px solid black; /* Adjust the border color and thickness as needed */
 }
+
+.randomizeButton:hover > .dices {
+  animation: spin 1s ease-out;
+}
+
+.dices{
+  margin-right: 10px;
+}
+
 .formElementsContainer {
   background-color: transparent;
-  border: 0.5px solid black;
   width: 100%;
-  height: 500px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

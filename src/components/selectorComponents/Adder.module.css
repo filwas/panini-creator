@@ -1,0 +1,41 @@
+.adderWrapper{
+    height: 16px;
+    width: 16px;
+    border: 0.5px solid black;
+    background-color: white;
+    border-radius: 100%;
+    position: relative;
+    transition: background-color 300ms;
+    cursor: pointer;
+    margin-top: 13px;
+}
+
+.horizontalBar{
+    width: 8px;
+    height: 0.5px;
+    background-color: black;
+    position: absolute;
+    top: 7.75px;
+    left: 4px;
+    transition: background-color 300ms;
+}
+
+.verticalBar{
+    height: 8px;
+    width: 0.5px;
+    background-color: black;
+    position: absolute;
+    top: 4px;
+    left: 7.75px;
+    transition: background-color 300ms;
+}
+
+.adderWrapper:hover{
+    background-color: black;
+}
+.adderWrapper:hover > .horizontalBar{
+    background-color: white;
+}
+.adderWrapper:hover > .verticalBar{
+    background-color: white;
+}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./SplashScreen.module.css";
-import Circles from "./Circles";
+import Circles from "../animations/Circles";
 import "@fontsource/instrument-serif";
 import "@fontsource/oxygen-mono";
 import { useNavigate } from "react-router-dom";

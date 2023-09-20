@@ -1,1 +1,1 @@
-export const spreadVariant = ["BUTTER", "HUMMUS", "GUACAMOLE"]
+export const spreadVariants = ["BUTTER", "HUMMUS", "GUACAMOLE"]
