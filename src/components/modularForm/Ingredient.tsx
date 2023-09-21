@@ -9,6 +9,7 @@ import Adder from "../selectorComponents/Adder";
 import Checkbox from "../selectorComponents/Checkbox";
 import Radial from "../selectorComponents/Radial";
 import Multiselect from "../selectorComponents/Multiselect";
+import TextInput from "../selectorComponents/TextInput";
 import classNames from "classnames";
 import { SelectorType } from "../enums/enums";
 
@@ -91,5 +92,7 @@ function selectorHelper(selector: SelectorType, options: string[]) {
       return <Checkbox checkboxOptions={options}/>;
     case SelectorType.Radial:
       return <Radial radialOptions={options}/>;
+    case SelectorType.Textinput:
+      return <TextInput placeholder={options[0]}/>
   }
 }
