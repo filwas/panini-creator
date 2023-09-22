@@ -16,7 +16,10 @@ function FormModuleFinal(props: FormModuleFinalProps) {
   const navigate = useNavigate();
 
   const handleStartAgain = () => {
-    navigate("");
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   const handlePlaceOrder = () => {};
@@ -26,7 +29,12 @@ function FormModuleFinal(props: FormModuleFinalProps) {
       <Ingredient
         name="Name panini"
         selector={SelectorType.Textinput}
-        options={["eg. Club Panini"]}
+        options={[""]}
+        textOptions={{
+          placeholder: "eg. Club Panini",
+          errorMessage: "Name is too long. Max 35 characters.",
+          maxChars: 35,
+        }}
       />
       <Ingredient
         name="Cutlery"

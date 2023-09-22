@@ -18,6 +18,7 @@ interface IngredientProps {
   selector: SelectorType;
   options: string[];
   togglable?: boolean;
+  textOptions?: { placeholder: string; errorMessage: string; maxChars: number };
 }
 
 function Ingredient(props: IngredientProps) {
@@ -59,7 +60,7 @@ function Ingredient(props: IngredientProps) {
                   adderClickHandler(index);
                 }}
               />
-              {selectorHelper(props.selector, props.options)}
+              {selectorHelper(props.selector, props.options, props.textOptions)}
               {props.selector == SelectorType.Carousel && index != 0 && (
                 <div className={styles.carouselSeparator} />
               )}
@@ -72,7 +73,7 @@ function Ingredient(props: IngredientProps) {
     return (
       <div className={wrapperStyle}>
         <div className={nameStyle}>{props.name}</div>
-        {selectorHelper(props.selector, props.options)}
+        {selectorHelper(props.selector, props.options, props.textOptions)}
       </div>
     );
   }
@@ -80,7 +81,18 @@ function Ingredient(props: IngredientProps) {
 
 export default Ingredient;
 
-function selectorHelper(selector: SelectorType, options: string[]) {
+function selectorHelper(
+  selector: SelectorType,
+  options: string[],
+  textOptions?: { placeholder: string; errorMessage: string; maxChars: number }
+) {
+  const maybeDefaultOptions = textOptions
+    ? textOptions
+    : {
+        placeholder: "default placeholder",
+        errorMessage: "default error",
+        maxChars: 35,
+      };
   switch (selector) {
     case SelectorType.Carousel:
       return <Carousel carouselOptions={options} />;
@@ -89,10 +101,10 @@ function selectorHelper(selector: SelectorType, options: string[]) {
     case SelectorType.Multiselect:
       return <Multiselect multiOptions={options} />;
     case SelectorType.Checkbox:
-      return <Checkbox checkboxOptions={options}/>;
+      return <Checkbox checkboxOptions={options} />;
     case SelectorType.Radial:
-      return <Radial radialOptions={options}/>;
+      return <Radial radialOptions={options} />;
     case SelectorType.Textinput:
-      return <TextInput placeholder={options[0]}/>
+      return <TextInput textOptions={maybeDefaultOptions} />;
   }
 }

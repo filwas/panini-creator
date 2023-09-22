@@ -3,12 +3,16 @@ import styles from "./TextInput.module.css";
 import classNames from "classnames";
 
 interface TextInputProps {
-  placeholder: string;
+  textOptions: {
+    placeholder: string;
+    errorMessage: string;
+    maxChars: number;
+  };
 }
 
 const TextInput = (props: TextInputProps) => {
   const [currentValue, setCurrentValue] = useState("");
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(false);
   const wrapStyle = classNames(styles.wrapper);
   const inputStyle = classNames(styles.input);
 
@@ -16,7 +20,7 @@ const TextInput = (props: TextInputProps) => {
   //same way i handled this in Fischkapp
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
-    if (newValue.length > 35) {
+    if (newValue.length > props.textOptions.maxChars) {
       setError(true);
     } else {
       setError(false);
@@ -29,15 +33,11 @@ const TextInput = (props: TextInputProps) => {
       <input
         type="text"
         className={inputStyle}
-        placeholder={props.placeholder}
+        placeholder={props.textOptions.placeholder}
         value={currentValue}
         onChange={handleChange}
       />
-      {error && (
-        <div className={styles.errorText}>
-          Name is too long. Max 35 characters.
-        </div>
-      )}
+      {error && <div className={styles.errorText}>{props.textOptions.errorMessage}</div>}
     </div>
   );
 };
