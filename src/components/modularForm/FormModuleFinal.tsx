@@ -10,6 +10,7 @@ import Ingredient from "./Ingredient";
 
 interface FormModuleFinalProps {
   name: string;
+  onOrder: () => void;
 }
 
 function FormModuleFinal(props: FormModuleFinalProps) {
@@ -22,7 +23,14 @@ function FormModuleFinal(props: FormModuleFinalProps) {
     });
   };
 
-  const handlePlaceOrder = () => {};
+  const handlePlaceOrder = () => {
+    props.onOrder();
+    setTimeout(() => {
+        navigate("/success");
+      }, 1000);
+
+  };
+
   return (
     <div className={styles.moduleTopWrapper}>
       <div className={styles.moduleTitle}>{props.name}</div>
