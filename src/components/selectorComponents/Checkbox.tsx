@@ -26,18 +26,17 @@ const SingleCheckbox = (props: SingleCheckboxProps) => {
   const clickHandler = () => {
     const newState = !state;
     setState(newState);
-
   };
-  //two different onClicks assigned here to achieve the effect where im able to click 
+  //two different onClicks assigned here to achieve the effect where im able to click
   //the text and the checkbox itself, but not the space between them
   return (
-    <div className={styles.checkboxTextWrap} >
-      <input type="checkbox" hidden={true}/>
-      <div className={styles.textPointer} onClick={clickHandler}>{props.text}</div>
-      <div className={styles.checkboxBoxWrap} onClick={clickHandler}>
+    <label className={styles.checkboxTextWrap}>
+      <input type="checkbox" hidden={true} onChange={clickHandler} />
+      {props.text}
+      <div className={styles.checkboxBoxWrap}>
         {state && <div className={styles.innerSquare} />}
       </div>
-    </div>
+    </label>
   );
 };
 

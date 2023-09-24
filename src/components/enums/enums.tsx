@@ -4,6 +4,7 @@ export enum SelectorType{
     Multiselect = "multiselect",
     Checkbox = "checkbox",
     Radial = "radial",
+    Textinput = "textinput"
 }
 
 export enum Direction{

@@ -21,7 +21,11 @@ function FormModuleBase(props: FormModuleBaseProps) {
   return (
     <div className={styles.moduleTopWrapper}>
       <div className={styles.moduleTitle}>{props.name}</div>
-      <Ingredient name="Bread" selector={SelectorType.Carousel} options={breadVariants} />
+      <Ingredient
+        name="Bread"
+        selector={SelectorType.Carousel}
+        options={breadVariants}
+      />
       <Ingredient
         name="Cheese"
         selector={SelectorType.Dropdown}
