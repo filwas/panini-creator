@@ -11,10 +11,11 @@ import Radial from "../selectorComponents/Radial";
 import Multiselect from "../selectorComponents/Multiselect";
 import TextInput from "../selectorComponents/TextInput";
 import classNames from "classnames";
-import { SelectorType } from "../enums/enums";
+import { SelectorType, FormDataType, PaniniFormData } from "../enumFaces/enumFaces";
 
 interface IngredientProps {
   name: string;
+  dataType: FormDataType;
   selector: SelectorType;
   options: string[];
   togglable?: boolean;
@@ -53,14 +54,14 @@ function Ingredient(props: IngredientProps) {
         </div>
         <div className={adderWrapStyle}>
           {adderArray.map((_, index) => (
-            <div className={styles.singleAdder}>
+            <div className={styles.singleAdder} key={props.name+"-"+index}>
               <Adder
                 direction={index == 0 ? "add" : "subtract"}
                 onClick={() => {
                   adderClickHandler(index);
                 }}
               />
-              {selectorHelper(props.selector, props.options, props.textOptions)}
+              {selectorHelper(props.selector, props.dataType, props.options, props.textOptions)}
               {props.selector == SelectorType.Carousel && index != 0 && (
                 <div className={styles.carouselSeparator} />
               )}
@@ -73,7 +74,7 @@ function Ingredient(props: IngredientProps) {
     return (
       <div className={wrapperStyle}>
         <div className={nameStyle}>{props.name}</div>
-        {selectorHelper(props.selector, props.options, props.textOptions)}
+        {selectorHelper(props.selector, props.dataType, props.options, props.textOptions)}
       </div>
     );
   }
@@ -83,6 +84,7 @@ export default Ingredient;
 
 function selectorHelper(
   selector: SelectorType,
+  dataType: FormDataType,
   options: string[],
   textOptions?: { placeholder: string; errorMessage: string; maxChars: number }
 ) {
@@ -95,11 +97,11 @@ function selectorHelper(
       };
   switch (selector) {
     case SelectorType.Carousel:
-      return <Carousel carouselOptions={options} />;
+      return <Carousel carouselOptions={options} dataType={dataType} />;
     case SelectorType.Dropdown:
-      return <Dropdown dropdownOptions={options} />;
+      return <Dropdown dropdownOptions={options} dataType={dataType}/>;
     case SelectorType.Multiselect:
-      return <Multiselect multiOptions={options} />;
+      return <Multiselect multiOptions={options} dataType={dataType} />;
     case SelectorType.Checkbox:
       return <Checkbox checkboxOptions={options} />;
     case SelectorType.Radial:

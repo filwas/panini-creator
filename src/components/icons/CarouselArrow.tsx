@@ -1,5 +1,5 @@
 import React from "react";
-import { Direction } from "../enums/enums";
+import { Direction } from "../enumFaces/enumFaces";
 
 interface CarouselArrowProps {
   className?: string;

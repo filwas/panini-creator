@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styles from "./Radial.module.css";
 import classNames from "classnames";
+import { FormDataType } from "../enumFaces/enumFaces";
+import  { useFormContext } from "react-hook-form"
 
 interface RadialProps {
   radialOptions: string[];

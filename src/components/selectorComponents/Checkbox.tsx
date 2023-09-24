@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Checkbox.module.css";
+import { FormDataType } from "../enumFaces/enumFaces";
+import  { useFormContext } from "react-hook-form"
 
 interface CheckboxProps {
   checkboxOptions: string[];

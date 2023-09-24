@@ -3,8 +3,9 @@ import styles from "./FormModule.module.css";
 import "@fontsource/instrument-serif";
 import "@fontsource/oxygen-mono";
 
-import { SelectorType } from "../enums/enums";
+import { SelectorType, FormDataType, PaniniFormData } from "../enumFaces/enumFaces";
 import { useNavigate } from "react-router-dom";
+import  { useFormContext } from "react-hook-form"
 
 import Ingredient from "./Ingredient";
 
@@ -14,9 +15,11 @@ interface FormModuleFinalProps {
 }
 
 function FormModuleFinal(props: FormModuleFinalProps) {
+  const formMethods = useFormContext<PaniniFormData>()
   const navigate = useNavigate();
 
   const handleStartAgain = () => {
+    formMethods.reset()
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -24,18 +27,19 @@ function FormModuleFinal(props: FormModuleFinalProps) {
   };
 
   const handlePlaceOrder = () => {
-    props.onOrder();
     setTimeout(() => {
         navigate("/success");
       }, 1000);
 
   };
 
+
   return (
     <div className={styles.moduleTopWrapper}>
       <div className={styles.moduleTitle}>{props.name}</div>
       <Ingredient
         name="Name panini"
+        dataType={FormDataType.Name}
         selector={SelectorType.Textinput}
         options={[""]}
         textOptions={{
@@ -46,11 +50,13 @@ function FormModuleFinal(props: FormModuleFinalProps) {
       />
       <Ingredient
         name="Cutlery"
+        dataType={FormDataType.Cutlery}
         selector={SelectorType.Checkbox}
         options={["ADD TO ORDER"]}
       />
       <Ingredient
         name="Napkins"
+        dataType={FormDataType.Napkins}
         selector={SelectorType.Checkbox}
         options={["ADD TO ORDER"]}
       />

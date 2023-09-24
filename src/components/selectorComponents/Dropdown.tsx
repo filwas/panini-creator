@@ -3,12 +3,16 @@ import styles from "./Dropdown.module.css";
 import "@fontsource/oxygen-mono";
 import DropdownArrow from "../icons/DropdownArrow";
 import classNames from "classnames";
+import { FormDataType } from "../enumFaces/enumFaces";
+import { useFormContext } from "react-hook-form";
 
 interface DropdownProps {
   dropdownOptions: string[];
+  dataType: FormDataType;
 }
 
 function Dropdown(props: DropdownProps) {
+  const { register, setValue } = useFormContext();
   const [selectedOption, setSelectedOption] = useState<string>(
     props.dropdownOptions[0]
   );
@@ -40,8 +44,10 @@ function Dropdown(props: DropdownProps) {
     dropdownWrapper
   );
 
+  setValue(props.dataType, selectedOption)
   return (
     <div className={dropdownWrapper}>
+      <input hidden value={selectedOption} {...register(props.dataType)} />
       <div className={firstBarWrapper}>
         <div className={styles.invisibleSapcer} />
         <button className={dropdownToggle} onClick={toggleDropdown}>

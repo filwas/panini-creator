@@ -4,13 +4,16 @@ import classNames from "classnames";
 import CarouselArrow from "../icons/CarouselArrow";
 import Grain from "../icons/Grain";
 import Wheat from "../icons/Wheat";
-import { Direction } from "../enums/enums";
+import { Direction, FormDataType } from "../enumFaces/enumFaces";
+import  { useFormContext } from "react-hook-form"
 
 interface CarouselProps {
   carouselOptions: string[];
+  dataType: FormDataType;
 }
 
 const Carousel = (props: CarouselProps) => {
+  const { register, setValue } = useFormContext()
   const [optionIndex, setOptionIndex] = useState(0);
 
   const carouselWrapper = classNames(styles.carouselWrapper);
@@ -35,8 +38,10 @@ const Carousel = (props: CarouselProps) => {
   const grain = props.carouselOptions[optionIndex] == "FULL GRAIN";
   const wheat = props.carouselOptions[optionIndex] == "WHEAT";
 
+  setValue(props.dataType, props.carouselOptions[optionIndex])
   return (
     <div className={carouselWrapper}>
+      <input hidden value={props.carouselOptions[optionIndex]} {...register(props.dataType)} />
       <CarouselArrow
         className={styles.genericArrow}
         direction={Direction.Left}
