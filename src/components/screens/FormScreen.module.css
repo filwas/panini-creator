@@ -8,6 +8,11 @@
   width: 650px;
   background-color: transparent;
   margin-top: 75px;
+  animation: formAppear 1s forwards;
+}
+
+.turnOffForm{
+  animation: formDisappear 1s forwards;
 }
 
 .header {
@@ -69,5 +74,23 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes formAppear {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+@keyframes formDisappear {
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
   }
 }
