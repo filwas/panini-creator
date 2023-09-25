@@ -12,7 +12,7 @@ import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
 
 function FormScreen() {
   const formMethods = useForm<PaniniFormData>();
-  const { handleSubmit } = formMethods;
+  const { handleSubmit, getValues, setValue } = formMethods;
 
   const onSubmit: SubmitHandler<PaniniFormData> = (data) => {
     console.log(data);
@@ -32,7 +32,9 @@ function FormScreen() {
   return (
     <FormProvider {...formMethods}>
       <div className={topFormWrapper}>
-        <button type="submit" onClick={handleSubmit(onSubmit)}/>
+        <button type="submit" onClick={handleSubmit(onSubmit)}>
+          SUBMIT
+        </button>
         <div className={styles.header}>
           Panini Creator
           <button className={styles.randomizeButton}>
@@ -51,3 +53,8 @@ function FormScreen() {
 }
 
 export default FormScreen;
+/**
+ * <FormModuleBase name="Configure Base" />
+   <FormModuleExtras name="Configure Extras" />
+   <FormModuleFinal name="Finalize Order" onOrder={handleOrder} />
+ */

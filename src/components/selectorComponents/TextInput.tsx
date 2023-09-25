@@ -10,9 +10,11 @@ interface TextInputProps {
     errorMessage: string;
     maxChars: number;
   };
+  dataType: FormDataType
 }
 
 const TextInput = (props: TextInputProps) => {
+  const {setValue} = useFormContext()
   const [currentValue, setCurrentValue] = useState("");
   const [error, setError] = useState(false);
   const wrapStyle = classNames(styles.wrapper);
@@ -28,7 +30,8 @@ const TextInput = (props: TextInputProps) => {
       setError(false);
     }
     setCurrentValue(newValue);
-  };
+    setValue(props.dataType, newValue)
+  };  
 
   return (
     <div className={wrapStyle}>

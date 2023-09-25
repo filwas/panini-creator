@@ -18,16 +18,19 @@ const Multiselect = (props: MultiselectProps) => {
   const toggleItemState = (index: number) => {
     setItemStates((prevStates) => {
       const newStates = [...prevStates];
-      newStates[index] = !newStates[index];
+      newStates[index] = !prevStates[index];
       return newStates;
     });
   };
 
-  itemStates.filter((e) => e).length > 0 &&
+  if (itemStates.filter((e) => e).length > 0) {
     setValue(
       props.dataType,
       props.multiOptions.filter((_, index) => itemStates[index] != false)
     );
+  } else {
+    setValue(props.dataType, [])
+  }
 
   return (
     <div className={styles.multiTopWrap}>
@@ -39,8 +42,6 @@ const Multiselect = (props: MultiselectProps) => {
           toggleFunc={() => {
             toggleItemState(index);
           }}
-          dataType={props.dataType}
-          arrayPos={index}
         />
       ))}
     </div>
@@ -53,14 +54,9 @@ interface MultiselectItemProps {
   text: string;
   isOn: boolean;
   toggleFunc: () => void;
-  dataType: FormDataType;
-  arrayPos: number;
 }
 
 const MultiselectItem = (props: MultiselectItemProps) => {
-  const clickHandler = () => {
-    props.toggleFunc();
-  };
 
   const selectStyle = classNames(
     styles.multiItemWrap,
@@ -68,7 +64,7 @@ const MultiselectItem = (props: MultiselectItemProps) => {
   );
 
   return (
-    <div className={selectStyle} onClick={clickHandler}>
+    <div className={selectStyle} onClick={props.toggleFunc}>
       {props.text}
     </div>
   );
