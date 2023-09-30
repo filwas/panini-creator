@@ -24,10 +24,6 @@ function FormModuleFinal(props: FormModuleFinalProps) {
     });
   };
 
-  const handlePlaceOrder = () => {
-    props.onOrder();
-  };
-
 
   return (
     <div className={styles.moduleTopWrapper}>
@@ -56,7 +52,7 @@ function FormModuleFinal(props: FormModuleFinalProps) {
         options={["ADD TO ORDER"]}
       />
       <div className={styles.lastMargin} />
-      <button className={styles.placeOrder} onClick={handlePlaceOrder}>
+      <button className={styles.placeOrder} onClick={props.onOrder}>
         place order
       </button>
       <button className={styles.startAgain} onClick={handleStartAgain}>
