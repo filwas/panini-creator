@@ -6,11 +6,10 @@ import { useFormContext } from "react-hook-form";
 
 interface MultiselectProps {
   multiOptions: string[];
-  dataType: FormDataType;
+  onSelect: (choice: string, index: number) => void
 }
 
 const Multiselect = (props: MultiselectProps) => {
-  const { setValue } = useFormContext();
   const [itemStates, setItemStates] = useState(
     props.multiOptions.map(() => false)
   );
@@ -22,21 +21,14 @@ const Multiselect = (props: MultiselectProps) => {
       return newStates;
     });
   };
-
-  if (itemStates.filter((e) => e).length > 0) {
-    setValue(
-      props.dataType,
-      props.multiOptions.filter((_, index) => itemStates[index] != false)
-    );
-  } else {
-    setValue(props.dataType, [])
-  }
-
+  const returnStates = itemStates.map((value, index) => value == true ? props.multiOptions[index] : "").filter(item => item != "");
+  
+  props.onSelect(returnStates.toString(), 0)
   return (
     <div className={styles.multiTopWrap}>
       {props.multiOptions.map((item, index) => (
         <MultiselectItem
-          key={props.dataType + "-" + index}
+          key={"multi-" + index}
           text={item}
           isOn={itemStates[index]}
           toggleFunc={() => {

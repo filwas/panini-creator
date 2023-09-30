@@ -6,18 +6,18 @@ import  { useFormContext } from "react-hook-form"
 
 interface RadialProps {
   radialOptions: string[];
-  dataType: FormDataType;
+  onSelect: (choice: string, index: number) => void
 }
 
 const Radial = (props: RadialProps) => {
-  const { setValue } = useFormContext()
   const [currentSelected, setcurrentSelected] = useState(0)
 
   const clickHandler = (index: number) => {    
     setcurrentSelected(index)
   };
 
-  setValue(props.dataType, props.radialOptions[currentSelected])
+  props.onSelect(props.radialOptions[currentSelected], 0)
+
   return (
     <div className={styles.radialTopWrapper}>
       {props.radialOptions.map((item, index) => (

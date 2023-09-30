@@ -19,7 +19,6 @@ function FormModuleFinal(props: FormModuleFinalProps) {
   const navigate = useNavigate();
 
   const handleStartAgain = () => {
-    formMethods.reset()
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -27,6 +26,7 @@ function FormModuleFinal(props: FormModuleFinalProps) {
   };
 
   const handlePlaceOrder = () => {
+    props.onOrder();
     setTimeout(() => {
         navigate("/success");
       }, 1000);

@@ -12,17 +12,14 @@ import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
 
 function FormScreen() {
   const formMethods = useForm<PaniniFormData>();
-  const { handleSubmit, getValues, setValue } = formMethods;
+  const { handleSubmit } = formMethods;
 
   const onSubmit: SubmitHandler<PaniniFormData> = (data) => {
+    setisBeingTurnedOff(true);
     console.log(data);
   };
 
   const [isBeingTurnedOff, setisBeingTurnedOff] = useState(false);
-
-  const handleOrder = () => {
-    setisBeingTurnedOff(true);
-  };
 
   const topFormWrapper = classNames(
     styles.wholeFormContainer,
@@ -32,9 +29,6 @@ function FormScreen() {
   return (
     <FormProvider {...formMethods}>
       <div className={topFormWrapper}>
-        <button type="submit" onClick={handleSubmit(onSubmit)}>
-          SUBMIT
-        </button>
         <div className={styles.header}>
           Panini Creator
           <button className={styles.randomizeButton}>
@@ -45,7 +39,10 @@ function FormScreen() {
         <div className={styles.formElementsContainer}>
           <FormModuleBase name="Configure Base" />
           <FormModuleExtras name="Configure Extras" />
-          <FormModuleFinal name="Finalize Order" onOrder={handleOrder} />
+          <FormModuleFinal
+            name="Finalize Order"
+            onOrder={handleSubmit(onSubmit)}
+          />
         </div>
       </div>
     </FormProvider>
@@ -53,8 +50,3 @@ function FormScreen() {
 }
 
 export default FormScreen;
-/**
- * <FormModuleBase name="Configure Base" />
-   <FormModuleExtras name="Configure Extras" />
-   <FormModuleFinal name="Finalize Order" onOrder={handleOrder} />
- */

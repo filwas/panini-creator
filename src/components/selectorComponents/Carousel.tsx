@@ -8,8 +8,8 @@ import { Direction, FormDataType } from "../enumFaces/enumFaces";
 
 interface CarouselProps {
   carouselOptions: string[];
-  dataType: FormDataType;
-  retElement: (result: string)=>void;
+  ID: number,
+  onSelect: (choice: string, index: number) => void
 }
 
 const Carousel = (props: CarouselProps) => {
@@ -34,9 +34,12 @@ const Carousel = (props: CarouselProps) => {
     }
   };
 
+  
   const grain = props.carouselOptions[optionIndex] == "FULL GRAIN";
   const wheat = props.carouselOptions[optionIndex] == "WHEAT";
-  props.retElement(props.carouselOptions[optionIndex])
+
+  props.onSelect(props.carouselOptions[optionIndex], props.ID)
+
   return (
     <div className={carouselWrapper}>
       <CarouselArrow

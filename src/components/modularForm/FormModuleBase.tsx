@@ -3,7 +3,7 @@ import styles from "./FormModule.module.css";
 import "@fontsource/instrument-serif";
 import "@fontsource/oxygen-mono";
 
-import { SelectorType, FormDataType, PaniniFormData } from "../enumFaces/enumFaces";
+import { SelectorType, FormDataType } from "../enumFaces/enumFaces";
 
 import { breadVariants } from "../../data/bread.js";
 import { cheeseVariants } from "../../data/cheese.js";
@@ -12,7 +12,6 @@ import { dressingVariants } from "../../data/dressing.js";
 import { vegetableVariants } from "../../data/vegetable.js";
 
 import Ingredient from "./Ingredient";
-import { useFormContext } from "react-hook-form/dist/useFormContext";
 
 interface FormModuleBaseProps {
   name: string;

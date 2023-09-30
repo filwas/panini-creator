@@ -14,9 +14,8 @@ import classNames from "classnames";
 import {
   SelectorType,
   FormDataType,
-  PaniniFormData,
 } from "../enumFaces/enumFaces";
-import { useFormContext, useFieldArray } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 
 interface IngredientProps {
   name: string;
@@ -28,17 +27,16 @@ interface IngredientProps {
 }
 
 function Ingredient(props: IngredientProps) {
-  const { register, control } = useFormContext();
-  const { fields, append, remove } = useFieldArray({
-    name: "ingredientList",
-  });
+  const { setValue } = useFormContext();
   const [adderArray, setAdderArray] = useState([0]);
-  const [countID, setCountID] = useState(1);
+  const [adderCount, setAdderCount] = useState(1);
   const [toggleState, setToggleState] = useState(true);
-  const [elementStates, setElementStates] = useState([]);
+  const [selectedValues, setSelectedValues] = useState([""]);
 
   function adderClickHandler(ID: number) {
     if (ID === 0) {
+      setAdderArray((prevArray) => [...prevArray, adderCount]);
+      setAdderCount((prevCount) => prevCount + 1);
     } else {
       setAdderArray(adderArray.filter((item) => item !== ID));
     }
@@ -48,6 +46,14 @@ function Ingredient(props: IngredientProps) {
     setToggleState((previousState) => !previousState);
   }
 
+  const userChoiceHandler = (choice: string, index: number) => {
+    if (choice != selectedValues[index]) {// this if prevents an infinite loop
+      let updatedChoices = [...selectedValues];
+      updatedChoices[index] = choice;
+      setSelectedValues(updatedChoices);
+    }
+  };
+
   const wrapperStyle = classNames(styles.ingredientWrapper);
   const nameStyle = classNames(styles.name);
   const adderWrapStyle = classNames(
@@ -55,7 +61,11 @@ function Ingredient(props: IngredientProps) {
     toggleState ? "" : styles.toggleOff
   );
 
-  console.log(fields)
+  setValue(
+    props.dataType,
+    toggleState ? selectedValues.slice(0, adderArray.length) : [""]
+  );
+
   if (props.togglable) {
     return (
       <div className={wrapperStyle}>
@@ -64,29 +74,23 @@ function Ingredient(props: IngredientProps) {
           <Toggle onStateChange={toggleHandler} />
         </div>
         <div className={adderWrapStyle}>
-          {props.togglable && adderArray.map((field, index) => (
-              <div className={styles.singleAdder} key={field}>
-                <input
-                  hidden
-                  key={field}
-                  value={elementStates}
-                  {...register(props.dataType)}
-                />
+          {toggleState &&
+            adderArray.map((item, index) => (
+              <div className={styles.singleAdder} key={item}>
                 <Adder
-                  direction={index == 0 ? "add" : "subtract"}
+                  direction={item == 0 ? "add" : "subtract"}
                   onClick={() => {
-                    adderClickHandler(index);
+                    adderClickHandler(item);
                   }}
                 />
                 {selectorHelper(
                   props.selector,
-                  props.dataType,
                   props.options,
-                  elementStates,
-                  setElementStates,
+                  index,
+                  userChoiceHandler,
                   props.textOptions
                 )}
-                {props.selector == SelectorType.Carousel && index != 0 && (
+                {props.selector == SelectorType.Carousel && item != 0 && (
                   <div className={styles.carouselSeparator} />
                 )}
               </div>
@@ -97,14 +101,12 @@ function Ingredient(props: IngredientProps) {
   } else {
     return (
       <div className={wrapperStyle}>
-        <input hidden value={elementStates} {...register(props.dataType)} />
         <div className={nameStyle}>{props.name}</div>
         {selectorHelper(
           props.selector,
-          props.dataType,
           props.options,
-          elementStates,
-          setElementStates,
+          0,
+          userChoiceHandler,
           props.textOptions
         )}
       </div>
@@ -116,10 +118,9 @@ export default Ingredient;
 
 function selectorHelper(
   selector: SelectorType,
-  dataType: FormDataType,
   options: string[],
-  elementState: any,
-  setElementState: any,
+  index: number,
+  userSelect: (choice: string, index: number) => void,
   textOptions?: { placeholder: string; errorMessage: string; maxChars: number }
 ) {
   const maybeDefaultOptions = textOptions
@@ -132,48 +133,21 @@ function selectorHelper(
   switch (selector) {
     case SelectorType.Carousel:
       return (
-        <Carousel
-          carouselOptions={options}
-          dataType={dataType}
-          retElement={setElementState}
-        />
+        <Carousel carouselOptions={options} ID={index} onSelect={userSelect} />
       );
     case SelectorType.Dropdown:
-      return <Dropdown dropdownOptions={options} dataType={dataType} />;
+      return (
+        <Dropdown dropdownOptions={options} ID={index} onSelect={userSelect} />
+      );
     case SelectorType.Multiselect:
-      return <Multiselect multiOptions={options} dataType={dataType} />;
+      return <Multiselect multiOptions={options} onSelect={userSelect} />;
     case SelectorType.Checkbox:
-      return <Checkbox checkboxOptions={options} dataType={dataType} />;
+      return <Checkbox checkboxOptions={options} onSelect={userSelect} />;
     case SelectorType.Radial:
-      return <Radial radialOptions={options} dataType={dataType} />;
+      return <Radial radialOptions={options} onSelect={userSelect} />;
     case SelectorType.Textinput:
       return (
-        <TextInput textOptions={maybeDefaultOptions} dataType={dataType} />
+        <TextInput textOptions={maybeDefaultOptions} onSelect={userSelect} />
       );
   }
 }
-/**
- * {toggleState &&
-            adderArray.map((item, index) => (
-              <div className={styles.singleAdder} key={item}>
-                <input hidden value={elementStates} {...register(props.dataType)} />
-                <Adder
-                  direction={index == 0 ? "add" : "subtract"}
-                  onClick={() => {
-                    adderClickHandler(item);
-                  }}
-                />
-                {selectorHelper(
-                  props.selector,
-                  props.dataType,
-                  props.options,
-                  elementStates,
-                  setElementStates,
-                  props.textOptions
-                )}
-                {props.selector == SelectorType.Carousel && index != 0 && (
-                  <div className={styles.carouselSeparator} />
-                )}
-              </div>
-            ))}
- */

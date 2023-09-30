@@ -3,7 +3,7 @@ import styles from "./FormModule.module.css";
 import "@fontsource/instrument-serif";
 import "@fontsource/oxygen-mono";
 
-import { SelectorType, FormDataType, PaniniFormData } from "../enumFaces/enumFaces";
+import { SelectorType, FormDataType } from "../enumFaces/enumFaces";
 
 import { eggVariants } from "../../data/egg.js";
 import { servingVariants } from "../../data/serving.js";

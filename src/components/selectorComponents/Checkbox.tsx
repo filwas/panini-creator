@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import styles from "./Checkbox.module.css";
-import { FormDataType } from "../enumFaces/enumFaces";
-import { useFormContext } from "react-hook-form";
 
 interface CheckboxProps {
   checkboxOptions: string[];
-  dataType: FormDataType;
+  onSelect: (choice: string, index: number) => void
 }
 
 const Checkbox = (props: CheckboxProps) => {
-  const { setValue } = useFormContext();
   const [itemStates, setItemStates] = useState(
     props.checkboxOptions.map(() => false)
   );
@@ -22,18 +19,9 @@ const Checkbox = (props: CheckboxProps) => {
     });
   };
 
-  if (itemStates.filter((e) => e).length > 0) {
-    if (props.dataType != FormDataType.Cutlery && props.dataType != FormDataType.Napkins) {
-      setValue(
-        props.dataType,
-        props.checkboxOptions.filter((_, index) => itemStates[index] != false)
-      );
-    } else{
-      setValue(props.dataType, true)
-    }
-  } else {
-    setValue(props.dataType, false);
-  }
+  const returnStates = itemStates.map((value, index) => value == true ? props.checkboxOptions[index] : "").filter(item => item != "");
+  
+  props.onSelect(returnStates.toString(), 0)
 
   return (
     <div className={styles.checkboxTopWrap}>

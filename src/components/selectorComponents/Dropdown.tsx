@@ -8,11 +8,11 @@ import { useFormContext } from "react-hook-form";
 
 interface DropdownProps {
   dropdownOptions: string[];
-  dataType: FormDataType;
+  ID: number,
+  onSelect: (choice: string, index: number) => void
 }
 
 function Dropdown(props: DropdownProps) {
-  const { register, setValue } = useFormContext();
   const [selectedOption, setSelectedOption] = useState<string>(
     props.dropdownOptions[0]
   );
@@ -44,10 +44,10 @@ function Dropdown(props: DropdownProps) {
     dropdownWrapper
   );
 
-  setValue(props.dataType, selectedOption)
+  props.onSelect(selectedOption, props.ID)
+
   return (
     <div className={dropdownWrapper}>
-      <input hidden value={selectedOption} {...register(props.dataType)} />
       <div className={firstBarWrapper}>
         <div className={styles.invisibleSapcer} />
         <button className={dropdownToggle} onClick={toggleDropdown}>

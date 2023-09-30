@@ -12,38 +12,33 @@ export enum Direction {
   Right = "right",
 }
 
-export enum FormDataType{
-    Name = "sandwichName",
-    Cutlery = 'cutlery',
-    Napkins = 'napkins',
-    Bread = 'base.bread',
-    Cheese = 'base.cheese',
-    Meat = 'base.meat',
-    Dressing = 'base.dressing',
-    Vegetables = 'base.vegetables',
-    Egg = 'extras.egg',
-    Spreads = 'extras.spreads',
-    Serving = 'extras.serving',
-    Topping = 'extras.topping',
+export enum FormDataType {
+  Name = "sandwichName",
+  Cutlery = "cutlery",
+  Napkins = "napkins",
+  Bread = "bread",
+  Cheese = "cheese",
+  Meat = "meat",
+  Dressing = "dressing",
+  Vegetables = "vegetables",
+  Egg = "egg",
+  Spreads = "spreads",
+  Serving = "serving",
+  Topping = "topping",
 }
-
-
 
 export interface PaniniFormData {
-  sandwichName: string;
-  cutlery: boolean;
-  napkins: boolean;
-  base: {
-    bread: string;
-    cheese: string[];
-    meat: string[];
-    dressing: string[];
-    vegetables: string[];
-  };
-  extras: {
-    egg: string[];
-    spreads: string[];
-    serving: string;
-    topping?: string[];
-  };
+  sandwichName: string[];
+  cutlery: string[];
+  napkins: string[];
+  bread: string[];
+  cheese: string[];
+  meat: string[];
+  dressing: string[];
+  vegetables: string[];
+  egg: string[];
+  spreads: string[];
+  serving: string[];
+  topping: string[];
 }
+
