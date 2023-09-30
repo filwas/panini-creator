@@ -3,7 +3,7 @@ import styles from "./FormModule.module.css";
 import "@fontsource/instrument-serif";
 import "@fontsource/oxygen-mono";
 
-import { SelectorType, FormDataType, PaniniFormData } from "../enumFaces/enumFaces";
+import { SelectorType, FormDataType, PaniniFormData, paniniSchema } from "../enumFaces/enumFaces";
 import { useNavigate } from "react-router-dom";
 import  { useFormContext } from "react-hook-form"
 
@@ -15,8 +15,7 @@ interface FormModuleFinalProps {
 }
 
 function FormModuleFinal(props: FormModuleFinalProps) {
-  const formMethods = useFormContext<PaniniFormData>()
-  const navigate = useNavigate();
+
 
   const handleStartAgain = () => {
     window.scrollTo({
@@ -27,10 +26,6 @@ function FormModuleFinal(props: FormModuleFinalProps) {
 
   const handlePlaceOrder = () => {
     props.onOrder();
-    setTimeout(() => {
-        navigate("/success");
-      }, 1000);
-
   };
 
 
@@ -44,8 +39,8 @@ function FormModuleFinal(props: FormModuleFinalProps) {
         options={[""]}
         textOptions={{
           placeholder: "eg. Club Panini",
-          errorMessage: "Name is too long. Max 35 characters.",
-          maxChars: 35,
+          errorMessage: `Name is too long. Max ${paniniSchema.shape.sandwichName.maxLength} characters.`,
+          maxChars: paniniSchema.shape.sandwichName.maxLength as number,
         }}
       />
       <Ingredient
