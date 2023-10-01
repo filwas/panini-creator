@@ -20,13 +20,15 @@ function FormScreen() {
   const formMethods = useForm<PaniniFormData>();
   const { handleSubmit } = formMethods;
   const navigate = useNavigate();
-  const onSubmit: SubmitHandler<PaniniFormData> = (data) => {
+  const onSubmit: SubmitHandler<PaniniFormData> = async (data) => {
     try {
       const parsedData = paniniSchema.parse(formatData(data));
       console.log(parsedData);
+      const serverResponse = await postPayload(parsedData);
+      console.log(serverResponse);
       setisBeingTurnedOff(true);
       setTimeout(() => {
-        navigate("/success");
+        navigate("/success", {state: {imageUrl: serverResponse.imageUrl}});
       }, 1000);
     } catch (error) {
       alert(fromZodError(error)); //using a library to make the error message readable to user
@@ -88,3 +90,28 @@ function formatData(data: PaniniFormData) {
 
   return returnObject;
 }
+
+
+const postPayload = async (payload: any) => {
+  const url = 'https://training.nerdbord.io/api/v1/panini-creator/order';
+  const headers = {
+    'Authorization': 'secret_token',
+    'Content-Type': 'application/json'
+  };
+
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    } else {
+      return await response.json();
+    }
+  } catch (error) {
+    console.error('There was a problem with the fetch operation: ', error);
+  }
+};
