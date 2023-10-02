@@ -23,7 +23,6 @@ function FormScreen() {
   const onSubmit: SubmitHandler<PaniniFormData> = (data) => {
     try {
       const parsedData = paniniSchema.parse(formatData(data));
-      console.log(parsedData);
       setisBeingTurnedOff(true);
       setTimeout(() => {
         navigate("/success");

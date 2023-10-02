@@ -19,9 +19,9 @@ const Checkbox = (props: CheckboxProps) => {
     });
   };
 
-  const returnStates = itemStates.map((value, index) => value == true ? props.checkboxOptions[index] : null).filter(item => item != null);
+  const returnedItemStates = itemStates.map((value, index) => value == true ? props.checkboxOptions[index] : null).filter(item => item != null);
   
-  props.onSelect(returnStates.toString(), 0)
+  props.onSelect(returnedItemStates.toString(), 0)
 
   return (
     <div className={styles.checkboxTopWrap}>
