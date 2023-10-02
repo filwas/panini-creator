@@ -19,7 +19,9 @@ const Checkbox = (props: CheckboxProps) => {
     });
   };
 
-  const returnedItemStates = itemStates.map((value, index) => value == true ? props.checkboxOptions[index] : null).filter(item => item != null);
+
+  const returnedItemStates = itemStates.map((value, index) => value == true ? props.checkboxOptions[index] : "").filter(item => item != "");
+
   
   props.onSelect(returnedItemStates.toString(), 0)
 
