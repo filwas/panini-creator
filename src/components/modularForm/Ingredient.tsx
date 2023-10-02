@@ -31,7 +31,7 @@ function Ingredient(props: IngredientProps) {
   const [adderArray, setAdderArray] = useState([0]);
   const [adderCount, setAdderCount] = useState(1);
   const [toggleState, setToggleState] = useState(true);
-  const [selectedValues, setSelectedValues] = useState([""]);
+  const [selectedValues, setSelectedValues] = useState<string[]>([]);
 
   function adderClickHandler(ID: number) {
     if (ID === 0) {
@@ -63,7 +63,7 @@ function Ingredient(props: IngredientProps) {
 
   setValue(
     props.dataType,
-    toggleState ? selectedValues.slice(0, adderArray.length) : [""]
+    toggleState ? selectedValues.slice(0, adderArray.length) : []
   );
 
   if (props.togglable) {
