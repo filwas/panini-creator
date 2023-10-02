@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import styles from "./Radial.module.css";
 import classNames from "classnames";
+import { FormDataType } from "../enumFaces/enumFaces";
+import  { useFormContext } from "react-hook-form"
 
 interface RadialProps {
   radialOptions: string[];
+  onSelect: (choice: string, index: number) => void
 }
 
 const Radial = (props: RadialProps) => {
@@ -13,10 +16,12 @@ const Radial = (props: RadialProps) => {
     setcurrentSelected(index)
   };
 
+  props.onSelect(props.radialOptions[currentSelected], 0)
+
   return (
     <div className={styles.radialTopWrapper}>
       {props.radialOptions.map((item, index) => (
-        <SingleRadial text={item} initialState={index == currentSelected ? true : false}  onClick={()=>{clickHandler(index)}}/>
+        <SingleRadial text={item} initialState={index == currentSelected ? true : false} key={index}  onClick={()=>{clickHandler(index)}}/>
       ))}
     </div>
   );

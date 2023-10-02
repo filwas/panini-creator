@@ -3,9 +3,13 @@ import styles from "./Dropdown.module.css";
 import "@fontsource/oxygen-mono";
 import DropdownArrow from "../icons/DropdownArrow";
 import classNames from "classnames";
+import { FormDataType } from "../enumFaces/enumFaces";
+import { useFormContext } from "react-hook-form";
 
 interface DropdownProps {
   dropdownOptions: string[];
+  ID: number,
+  onSelect: (choice: string, index: number) => void
 }
 
 function Dropdown(props: DropdownProps) {
@@ -39,6 +43,8 @@ function Dropdown(props: DropdownProps) {
     styles.dropdownOption,
     dropdownWrapper
   );
+
+  props.onSelect(selectedOption, props.ID)
 
   return (
     <div className={dropdownWrapper}>

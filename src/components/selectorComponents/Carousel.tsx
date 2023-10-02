@@ -4,10 +4,12 @@ import classNames from "classnames";
 import CarouselArrow from "../icons/CarouselArrow";
 import Grain from "../icons/Grain";
 import Wheat from "../icons/Wheat";
-import { Direction } from "../enums/enums";
+import { Direction, FormDataType } from "../enumFaces/enumFaces";
 
 interface CarouselProps {
   carouselOptions: string[];
+  ID: number,
+  onSelect: (choice: string, index: number) => void
 }
 
 const Carousel = (props: CarouselProps) => {
@@ -32,8 +34,11 @@ const Carousel = (props: CarouselProps) => {
     }
   };
 
+  
   const grain = props.carouselOptions[optionIndex] == "FULL GRAIN";
   const wheat = props.carouselOptions[optionIndex] == "WHEAT";
+
+  props.onSelect(props.carouselOptions[optionIndex], props.ID)
 
   return (
     <div className={carouselWrapper}>

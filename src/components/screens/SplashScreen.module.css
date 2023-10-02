@@ -46,7 +46,7 @@
 
 .button:hover {
   transition: ease-in-out 0.3s;
-  border: 2px solid black; /* Adjust the border color and thickness as needed */
+  border: 2px solid black;
 }
 
 h1 {
