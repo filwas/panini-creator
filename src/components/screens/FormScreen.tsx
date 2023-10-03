@@ -15,17 +15,21 @@ import classNames from "classnames";
 import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { fromZodError } from "zod-validation-error";
+import { formatData } from "../../api/formatters";
+import { postPayload } from "../../api/client";
 
 function FormScreen() {
   const formMethods = useForm<PaniniFormData>();
   const { handleSubmit } = formMethods;
   const navigate = useNavigate();
-  const onSubmit: SubmitHandler<PaniniFormData> = (data) => {
+  const onSubmit: SubmitHandler<PaniniFormData> = async (data: PaniniFormData) => {
     try {
-      const parsedData = paniniSchema.parse(formatData(data));
+
+      const parsedData = paniniSchema.parse(formatData(data)) as SandwichPayload;
+      const serverResponse = await postPayload(parsedData);
       setisBeingTurnedOff(true);
       setTimeout(() => {
-        navigate("/success");
+        navigate("/success", {state: {imageUrl: serverResponse.imageUrl}});
       }, 1000);
     } catch (error) {
       alert(fromZodError(error)); //using a library to make the error message readable to user
@@ -64,26 +68,5 @@ function FormScreen() {
 
 export default FormScreen;
 
-function formatData(data: PaniniFormData) {
-  const returnObject: SandwichPayload = {
-    sandwichName: data.sandwichName.toString(),
-    cutlery: data.cutlery[0] ? true : false,
-    napkins: data.napkins[0] ? true : false,
-    base: {
-      bread: data.bread.toString(),
-      cheese: data.cheese,
-      meat: data.meat,
-      dressing: data.dressing,
-      vegetables:
-        data.vegetables[0].length > 0 ? data.vegetables[0].split(",") : [],
-    },
-    extras: {
-      egg: data.egg,
-      spreads: data.spreads[0].length > 0 ? data.spreads[0].split(",") : [],
-      serving: data.serving.toString(),
-      topping: data.topping[0].length > 0 ? data.topping[0] : null,
-    },
-  };
 
-  return returnObject;
-}
+
