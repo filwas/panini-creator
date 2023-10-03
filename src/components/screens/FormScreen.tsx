@@ -24,6 +24,7 @@ function FormScreen() {
   const navigate = useNavigate();
   const onSubmit: SubmitHandler<PaniniFormData> = async (data: PaniniFormData) => {
     try {
+
       const parsedData = paniniSchema.parse(formatData(data)) as SandwichPayload;
       const serverResponse = await postPayload(parsedData);
       setisBeingTurnedOff(true);
