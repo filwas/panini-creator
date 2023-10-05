@@ -12,17 +12,10 @@ import Ingredient from "./Ingredient";
 interface FormModuleFinalProps {
   name: string;
   onOrder: () => void;
+  onReset: () => void;
 }
 
 function FormModuleFinal(props: FormModuleFinalProps) {
-
-
-  const handleStartAgain = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
 
 
   return (
@@ -55,7 +48,7 @@ function FormModuleFinal(props: FormModuleFinalProps) {
       <button className={styles.placeOrder} onClick={props.onOrder}>
         place order
       </button>
-      <button className={styles.startAgain} onClick={handleStartAgain}>
+      <button className={styles.startAgain} onClick={props.onReset}>
         start again
       </button>
     </div>
