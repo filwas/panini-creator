@@ -22,6 +22,7 @@ function FormScreen() {
   const formMethods = useForm<PaniniFormData>();
   const { handleSubmit } = formMethods;
   const navigate = useNavigate();
+  const [formReset, setFormReset] = useState(true)
   const onSubmit: SubmitHandler<PaniniFormData> = async (data: PaniniFormData) => {
     try {
 
@@ -35,6 +36,14 @@ function FormScreen() {
       alert(fromZodError(error)); //using a library to make the error message readable to user
     }
   };
+
+  const handleReset = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+    setFormReset((prevState) => !prevState)
+  }
 
   const [isBeingTurnedOff, setisBeingTurnedOff] = useState(false);
 
@@ -53,11 +62,12 @@ function FormScreen() {
             randomize panini
           </button>
         </div>
-        <div className={styles.formElementsContainer}>
+        <div className={styles.formElementsContainer} key={formReset}>
           <FormModuleBase name="Configure Base" />
           <FormModuleExtras name="Configure Extras" />
           <FormModuleFinal
             name="Finalize Order"
+            onReset={handleReset}
             onOrder={handleSubmit(onSubmit)}
           />
         </div>

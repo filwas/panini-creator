@@ -1,4 +1,4 @@
-import React, { useId, useState } from "react";
+import React, { useImperativeHandle, useRef, useState } from "react";
 import styles from "./Ingredient.module.css";
 import "@fontsource/instrument-serif";
 import "@fontsource/oxygen-mono";
@@ -11,10 +11,7 @@ import Radial from "../selectorComponents/Radial";
 import Multiselect from "../selectorComponents/Multiselect";
 import TextInput from "../selectorComponents/TextInput";
 import classNames from "classnames";
-import {
-  SelectorType,
-  FormDataType,
-} from "../enumFaces/enumFaces";
+import { SelectorType, FormDataType } from "../enumFaces/enumFaces";
 import { useFormContext } from "react-hook-form";
 
 interface IngredientProps {
@@ -47,7 +44,8 @@ function Ingredient(props: IngredientProps) {
   }
 
   const userChoiceHandler = (choice: string, index: number) => {
-    if (choice != selectedValues[index]) {// this if prevents an infinite loop
+    if (choice != selectedValues[index]) {
+      // this if prevents an infinite loop
       let updatedChoices = [...selectedValues];
       updatedChoices[index] = choice;
       setSelectedValues(updatedChoices);
