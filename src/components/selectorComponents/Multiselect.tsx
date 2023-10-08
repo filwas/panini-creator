@@ -1,36 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Multiselect.module.css";
 import classNames from "classnames";
 import { FormDataType } from "../enumFaces/enumFaces";
 import { useFormContext } from "react-hook-form";
+import { data } from "../../data/Data";
 
 interface MultiselectProps {
-  multiOptions: string[];
-  onSelect: (choice: string, index: number) => void
+  formField: FormDataType;
 }
 
 const Multiselect = (props: MultiselectProps) => {
-  const [itemStates, setItemStates] = useState(
-    props.multiOptions.map(() => false)
-  );
+  const context = useFormContext();
+  const fieldValues = context.watch(props.formField)
+  const options = data(props.formField);
+  const [refresher, refreshState] = useState(true)
+
 
   const toggleItemState = (index: number) => {
-    setItemStates((prevStates) => {
-      const newStates = [...prevStates];
-      newStates[index] = !prevStates[index];
-      return newStates;
-    });
+    context.setValue(`${props.formField}[${index}]`, fieldValues[index] ? "" : options[index])
+
+    refreshState(!refresher)
   };
-  const returnStates = itemStates.map((value, index) => value == true ? props.multiOptions[index] : "").filter(item => item != "");
-  
-  props.onSelect(returnStates.toString(), 0)
+
+
+
   return (
     <div className={styles.multiTopWrap}>
-      {props.multiOptions.map((item, index) => (
+      {options.map((item, index) => (
         <MultiselectItem
           key={"multi-" + index}
           text={item}
-          isOn={itemStates[index]}
+          isOn={fieldValues[index]}
           toggleFunc={() => {
             toggleItemState(index);
           }}
@@ -49,7 +49,6 @@ interface MultiselectItemProps {
 }
 
 const MultiselectItem = (props: MultiselectItemProps) => {
-
   const selectStyle = classNames(
     styles.multiItemWrap,
     props.isOn ? styles.on : styles.off

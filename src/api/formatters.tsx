@@ -25,4 +25,3 @@ export function formatData(data: PaniniFormData) {
   
     return returnObject;
   }
-  
