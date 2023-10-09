@@ -42,7 +42,7 @@ function FormScreen() {
     topping: [],
   };
   const formMethods = useForm<PaniniFormData>({
-    defaultValues: defaultValues,
+    defaultValues,
   });
   const { handleSubmit, reset } = formMethods;
   const navigate = useNavigate();
@@ -65,7 +65,7 @@ function FormScreen() {
   };
 
   const randomHandler = () => {
-    randomizer(formMethods);
+    reset(randomForm());
     toggleRefresher(!refresher);
   };
 
@@ -99,7 +99,7 @@ function FormScreen() {
           <FormModuleBase name="Configure Base" />
           <FormModuleExtras name="Configure Extras" />
           <FormModuleFinal
-            name=""
+            name="Finalize Order"
             onOrder={handleSubmit(onSubmit)}
             onReset={handleStartAgain}
           />
@@ -111,10 +111,8 @@ function FormScreen() {
 
 export default FormScreen;
 
-function randomizer(
-  formMethods: UseFormReturn<PaniniFormData, any, undefined>
-) {
-  let randomForm: PaniniFormData = {
+function randomForm() {
+  const randomForm: PaniniFormData = {
     sandwichName: [],
     cutlery: [],
     napkins: [],
@@ -133,27 +131,45 @@ function randomizer(
     const ingredient = key as keyof PaniniFormData;
     const ingredientType = key as FormDataType;
 
-    if (["bread", "sandwichName", "serving"].indexOf(ingredient) >= 0) {
-      randomForm[ingredient] = [randomValue(ingredientType)];
-    } else if (["cutlery", "napkins", "topping"].indexOf(ingredient) >= 0) {
-      const isTrue = Math.random() >= 0.5;
-      randomForm[ingredient] = isTrue ? [randomValue(ingredientType)] : [];
-    } else if (["spreads", "vegetables"].indexOf(ingredient) >= 0) {
-      const dataArray = data(ingredientType);
-      for (let index = 0; index < dataArray.length; index++) {
-        const isTrue = Math.random() >= 0.5;
-        randomForm[ingredient][index] = isTrue ? dataArray[index] : "";
-      }
-    } else {
-      const randomNumber = Math.ceil(Math.random() * 5);
-      for (let index = 0; index < randomNumber; index++) {
-        randomForm[ingredient][index] = randomValue(ingredientType);
-      }
+    switch (ingredientType) {
+      //single-value cases
+      case FormDataType.Bread:
+      case FormDataType.Name:
+      case FormDataType.Serving:
+        randomForm[ingredient] = [randomValue(ingredientType)];
+        break;
+      //booleable cases
+      case FormDataType.Cutlery:
+      case FormDataType.Napkins:
+      case FormDataType.Topping:
+        {
+          const isTrue = Math.random() >= 0.5;
+          randomForm[ingredient] = isTrue ? [randomValue(ingredientType)] : [];
+        }
+        break;
+      //non-repeating cases
+      case FormDataType.Spreads:
+      case FormDataType.Vegetables:
+        {
+          const dataArray = data(ingredientType);
+          for (let index = 0; index < dataArray.length; index++) {
+            const isTrue = Math.random() >= 0.5;
+            randomForm[ingredient][index] = isTrue ? dataArray[index] : "";
+          }
+        }
+        break;
+      //all remaining cases
+      default:
+        {
+          const randomNumber = Math.ceil(Math.random() * 4);
+          for (let index = 0; index < randomNumber; index++) {
+            randomForm[ingredient][index] = randomValue(ingredientType);
+          }
+        }
+        break;
     }
   }
-
-  formMethods.reset(randomForm);
-  return;
+  return randomForm;
 }
 
 function randomValue(type: FormDataType) {

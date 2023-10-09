@@ -25,21 +25,20 @@ interface IngredientProps {
 
 function Ingredient(props: IngredientProps) {
   const formContext = useFormContext();
-  
+
   const fieldData = formContext.watch(props.dataType) as string[];
-  const [refresher, toggleRefresher] = useState(false);
+  const [refresher, toggleRefresher] = useState(true);
   const [toggleState, setToggleState] = useState(true);
 
   function adderClickHandler(ID: number) {
     if (ID === 0) {
-      const newData = [...fieldData, data(props.dataType)[0]]
-      formContext.setValue(`${props.dataType}`,newData)
+      const newData = [...fieldData, data(props.dataType)[0]];
+      formContext.setValue(`${props.dataType}`, newData);
     } else {
-      formContext.setValue(`${props.dataType}[${ID}]`,"")
-      toggleRefresher(!refresher)
+      formContext.setValue(`${props.dataType}[${ID}]`, "");
+      toggleRefresher(!refresher);
     }
   }
-
 
   function toggleHandler() {
     setToggleState((previousState) => !previousState);
@@ -61,25 +60,28 @@ function Ingredient(props: IngredientProps) {
         </div>
         <div className={adderWrapStyle}>
           {toggleState &&
-            fieldData.map((item, index) => ( item != "" &&
-              <div className={styles.singleAdder} key={index}>
-                <Adder
-                  direction={index == 0 ? "add" : "subtract"}
-                  onClick={() => {
-                    adderClickHandler(index);
-                  }}
-                />
-                {selectorHelper(
-                  props.dataType,
-                  props.selector,
-                  index,
-                  props.textOptions
-                )}
-                {props.selector == SelectorType.Carousel && index != 0 && (
-                  <div className={styles.carouselSeparator} />
-                )}
-              </div>
-            ))}
+            fieldData.map(
+              (item, index) =>
+                item != "" && (
+                  <div className={styles.singleAdder} key={index}>
+                    <Adder
+                      direction={index == 0 ? "add" : "subtract"}
+                      onClick={() => {
+                        adderClickHandler(index);
+                      }}
+                    />
+                    {selectorHelper(
+                      props.dataType,
+                      props.selector,
+                      index,
+                      props.textOptions
+                    )}
+                    {props.selector == SelectorType.Carousel && index != 0 && (
+                      <div className={styles.carouselSeparator} />
+                    )}
+                  </div>
+                )
+            )}
         </div>
       </div>
     );
@@ -87,12 +89,7 @@ function Ingredient(props: IngredientProps) {
     return (
       <div className={wrapperStyle}>
         <div className={nameStyle}>{props.name}</div>
-        {selectorHelper(
-          props.dataType,
-          props.selector,
-          0,
-          props.textOptions
-        )}
+        {selectorHelper(props.dataType, props.selector, 0, props.textOptions)}
       </div>
     );
   }
