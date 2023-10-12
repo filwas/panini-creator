@@ -15,8 +15,6 @@ interface FormModuleFinalProps {
 
 function FormModuleFinal(props: FormModuleFinalProps) {
 
-
-
   return (
     <div className={styles.moduleTopWrapper}>
       <div className={styles.moduleTitle}>{props.name}</div>
