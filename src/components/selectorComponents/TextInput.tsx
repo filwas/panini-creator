@@ -1,23 +1,21 @@
 import React, { useState } from "react";
 import styles from "./TextInput.module.css";
-import classNames from "classnames";
 import { FormDataType } from "../enumFaces/enumFaces";
 import { useFormContext } from "react-hook-form";
 
 interface TextInputProps {
+  formField: FormDataType;
   textOptions: {
     placeholder: string;
     errorMessage: string;
     maxChars: number;
   };
-  onSelect: (choice: string, index: number) => void
 }
 
 const TextInput = (props: TextInputProps) => {
-  const [currentValue, setCurrentValue] = useState("");
+  const context = useFormContext();
   const [error, setError] = useState(false);
-  const wrapStyle = classNames(styles.wrapper);
-  const inputStyle = classNames(styles.input);
+
 
   //same way i handled this in Fischkapp
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,16 +25,15 @@ const TextInput = (props: TextInputProps) => {
     } else {
       setError(false);
     }
-    setCurrentValue(newValue);
+    context.setValue(`${props.formField}[0]`, newValue)
   };
-  props.onSelect(currentValue, 0);
   return (
-    <div className={wrapStyle}>
+    <div className={styles.wrapper}>
       <input
         type="text"
-        className={inputStyle}
+        className={styles.input}
         placeholder={props.textOptions.placeholder}
-        value={currentValue}
+        value={context.watch(props.formField)}
         onChange={handleChange}
       />
       {error && (

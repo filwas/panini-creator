@@ -1,0 +1,1 @@
+export const nameVariants = ['Cheesy Chicken Pesto', "Ham and Brie Croissant", "Mediterranean Veggie", "Turkey Cranberry", "Caprese"]

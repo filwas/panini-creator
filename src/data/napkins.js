@@ -1,0 +1,1 @@
+export const napkinsVariants = ["ADD TO ORDER"]

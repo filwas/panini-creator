@@ -2,26 +2,33 @@ import React, { useState } from "react";
 import styles from "./Radial.module.css";
 import classNames from "classnames";
 import { FormDataType } from "../enumFaces/enumFaces";
-import  { useFormContext } from "react-hook-form"
+import { useFormContext } from "react-hook-form";
+import { data } from "../../data/Data";
 
 interface RadialProps {
-  radialOptions: string[];
-  onSelect: (choice: string, index: number) => void
+  formField: FormDataType;
 }
 
 const Radial = (props: RadialProps) => {
-  const [currentSelected, setcurrentSelected] = useState(0)
+  const context = useFormContext();
+  const options = data(props.formField);
+  const currentSelected = context.watch(props.formField);
 
-  const clickHandler = (index: number) => {    
-    setcurrentSelected(index)
+  const clickHandler = (item: string) => {
+    context.setValue(`${props.formField}[0]`, item);
   };
-
-  props.onSelect(props.radialOptions[currentSelected], 0)
 
   return (
     <div className={styles.radialTopWrapper}>
-      {props.radialOptions.map((item, index) => (
-        <SingleRadial text={item} initialState={index == currentSelected ? true : false} key={index}  onClick={()=>{clickHandler(index)}}/>
+      {options.map((item, index) => (
+        <SingleRadial
+          text={item}
+          initialState={item == currentSelected ? true : false}
+          key={index}
+          onClick={() => {
+            clickHandler(item);
+          }}
+        />
       ))}
     </div>
   );
@@ -32,18 +39,13 @@ export default Radial;
 interface SingleRadialProps {
   initialState: boolean;
   text: string;
-  onClick: ()=>void;
+  onClick: () => void;
 }
 
 const SingleRadial = (props: SingleRadialProps) => {
-
-  const clickHandler = () => {
-    props.onClick()
-  };
-
   return (
-    <div className={styles.radialNameWrap} onClick={clickHandler}>
-      <div className={styles.radialCircle} >
+    <div className={styles.radialNameWrap} onClick={props.onClick}>
+      <div className={styles.radialCircle}>
         <div className={classNames(props.initialState && styles.radialDot)} />
       </div>
       {props.text}

@@ -5,25 +5,26 @@ import DropdownArrow from "../icons/DropdownArrow";
 import classNames from "classnames";
 import { FormDataType } from "../enumFaces/enumFaces";
 import { useFormContext } from "react-hook-form";
+import { data } from "../../data/Data";
 
 interface DropdownProps {
-  dropdownOptions: string[];
-  ID: number,
-  onSelect: (choice: string, index: number) => void
+  formField: FormDataType;
+  ID: number;
 }
 
 function Dropdown(props: DropdownProps) {
-  const [selectedOption, setSelectedOption] = useState<string>(
-    props.dropdownOptions[0]
-  );
+  const context = useFormContext();
+  const options = data(props.formField);
+  const displayValue = context.watch(props.formField)[props.ID];
   const [isOpen, setIsOpen] = useState(false);
+
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
   const selectOption = (option: string) => {
-    setSelectedOption(option);
+    context.setValue(`${props.formField}[${props.ID}]`, option);
     setIsOpen(false);
   };
 
@@ -44,22 +45,20 @@ function Dropdown(props: DropdownProps) {
     dropdownWrapper
   );
 
-  props.onSelect(selectedOption, props.ID)
-
   return (
     <div className={dropdownWrapper}>
       <div className={firstBarWrapper}>
         <div className={styles.invisibleSapcer} />
         <button className={dropdownToggle} onClick={toggleDropdown}>
-          {selectedOption}
+          {displayValue}
         </button>
         <DropdownArrow className={dropdownArrow} />
       </div>
       {isOpen && (
         <div className={dropdownOptionsWrapper}>
-          {props.dropdownOptions.map(
-            (option, index) =>
-              option !== selectedOption && (
+          {options.map(
+            (option) =>
+              option !== displayValue && (
                 <div
                   className={dropdownOption}
                   onClick={() => selectOption(option)}

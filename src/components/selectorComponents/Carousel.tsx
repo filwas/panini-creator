@@ -1,56 +1,48 @@
 import React, { useState } from "react";
 import styles from "./Carousel.module.css";
-import classNames from "classnames";
 import CarouselArrow from "../icons/CarouselArrow";
 import Grain from "../icons/Grain";
 import Wheat from "../icons/Wheat";
 import { Direction, FormDataType } from "../enumFaces/enumFaces";
+import { useFormContext } from "react-hook-form";
+import { data } from "../../data/Data";
 
 interface CarouselProps {
-  carouselOptions: string[];
-  ID: number,
-  onSelect: (choice: string, index: number) => void
+  ID: number;
+  formField: FormDataType;
 }
 
 const Carousel = (props: CarouselProps) => {
-  const [optionIndex, setOptionIndex] = useState(0);
-
-  const carouselWrapper = classNames(styles.carouselWrapper);
-  const textWrapper = classNames(styles.textWrapper);
+  const context = useFormContext();
+  const options = data(props.formField);
+  const displayValue = context.watch(props.formField)[props.ID];
+  const [refresher, refreshElement] = useState(true);
 
   const arrowClick = (direction: Direction) => {
+    let optionIndex = options.indexOf(displayValue);
     if (direction == Direction.Left) {
-      setOptionIndex((prevOptionIndex) =>
-        prevOptionIndex === 0
-          ? props.carouselOptions.length - 1
-          : prevOptionIndex - 1
-      );
+      optionIndex == 0 ? (optionIndex = options.length - 1) : optionIndex--;
     } else if (direction == Direction.Right) {
-      setOptionIndex((prevOptionIndex) =>
-        prevOptionIndex === props.carouselOptions.length - 1
-          ? 0
-          : prevOptionIndex + 1
-      );
-    }
+      optionIndex == options.length - 1 ? optionIndex = 0 : optionIndex++;
+    }    
+    context.setValue(`${props.formField}[${props.ID}]`, options[optionIndex]);
+    refreshElement(!refresher);
   };
 
-  
-  const grain = props.carouselOptions[optionIndex] == "FULL GRAIN";
-  const wheat = props.carouselOptions[optionIndex] == "WHEAT";
-
-  props.onSelect(props.carouselOptions[optionIndex], props.ID)
+  const grain = context.watch(props.formField)[props.ID] == "FULL GRAIN";
+  const wheat = context.watch(props.formField)[props.ID] == "WHEAT";
 
   return (
-    <div className={carouselWrapper}>
+    <div className={styles.carouselWrapper}>
       <CarouselArrow
         className={styles.genericArrow}
         direction={Direction.Left}
         onClick={() => arrowClick(Direction.Left)}
       />
-      <div className={textWrapper}>
+      <div className={styles.textWrapper}>
         {grain && <Grain />}
         {wheat && <Wheat />}
-        {props.carouselOptions[optionIndex]}
+        {displayValue}
       </div>
       <CarouselArrow
         className={styles.genericArrow}

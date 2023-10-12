@@ -1,36 +1,32 @@
 import React, { useState } from "react";
 import styles from "./Checkbox.module.css";
+import { data } from "../../data/Data";
+import { useFormContext } from "react-hook-form";
+import { FormDataType } from "../enumFaces/enumFaces";
 
 interface CheckboxProps {
-  checkboxOptions: string[];
-  onSelect: (choice: string, index: number) => void
+  formField: FormDataType
 }
 
 const Checkbox = (props: CheckboxProps) => {
-  const [itemStates, setItemStates] = useState(
-    props.checkboxOptions.map(() => false)
-  );
+  const context = useFormContext();
+  const fieldValues = context.watch(props.formField)
+  const options = data(props.formField);
+  const [refresher, refreshState] = useState(true)
+
 
   const toggleItemState = (index: number) => {
-    setItemStates((prevStates) => {
-      const newStates = [...prevStates];
-      newStates[index] = !prevStates[index];
-      return newStates;
-    });
+    context.setValue(`${props.formField}[${index}]`, fieldValues[index] ? "" : options[index])
+    refreshState(!refresher)
   };
 
 
-  const returnedItemStates = itemStates.map((value, index) => value == true ? props.checkboxOptions[index] : "").filter(item => item != "");
-
-  
-  props.onSelect(returnedItemStates.toString(), 0)
-
   return (
     <div className={styles.checkboxTopWrap}>
-      {props.checkboxOptions.map((item, index) => (
+      {options.map((item, index) => (
         <SingleCheckbox
           text={item}
-          isOn={itemStates[index]}
+          isOn={fieldValues[index]}
           toggleFunc={() => toggleItemState(index)}
         />
       ))}

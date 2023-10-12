@@ -1,0 +1,1 @@
+export const cutleryVariants = ["ADD TO ORDER"]

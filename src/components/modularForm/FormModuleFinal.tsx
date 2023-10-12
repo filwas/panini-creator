@@ -3,10 +3,8 @@ import styles from "./FormModule.module.css";
 import "@fontsource/instrument-serif";
 import "@fontsource/oxygen-mono";
 
-import { SelectorType, FormDataType, PaniniFormData, paniniSchema } from "../enumFaces/enumFaces";
-import { useNavigate } from "react-router-dom";
-import  { useFormContext } from "react-hook-form"
-
+import { SelectorType, FormDataType, paniniSchema } from "../enumFaces/enumFaces";
+import { useFormContext } from "react-hook-form";
 import Ingredient from "./Ingredient";
 
 interface FormModuleFinalProps {
@@ -17,7 +15,6 @@ interface FormModuleFinalProps {
 
 function FormModuleFinal(props: FormModuleFinalProps) {
 
-
   return (
     <div className={styles.moduleTopWrapper}>
       <div className={styles.moduleTitle}>{props.name}</div>
@@ -25,7 +22,6 @@ function FormModuleFinal(props: FormModuleFinalProps) {
         name="Name panini"
         dataType={FormDataType.Name}
         selector={SelectorType.Textinput}
-        options={[""]}
         textOptions={{
           placeholder: "eg. Club Panini",
           errorMessage: `Name is too long. Max ${paniniSchema.shape.sandwichName.maxLength} characters.`,
@@ -36,13 +32,11 @@ function FormModuleFinal(props: FormModuleFinalProps) {
         name="Cutlery"
         dataType={FormDataType.Cutlery}
         selector={SelectorType.Checkbox}
-        options={["ADD TO ORDER"]}
       />
       <Ingredient
         name="Napkins"
         dataType={FormDataType.Napkins}
         selector={SelectorType.Checkbox}
-        options={["ADD TO ORDER"]}
       />
       <div className={styles.lastMargin} />
       <button className={styles.placeOrder} onClick={props.onOrder}>
