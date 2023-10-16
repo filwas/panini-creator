@@ -23,7 +23,7 @@ const Radial = (props: RadialProps) => {
       {options.map((item, index) => (
         <SingleRadial
           text={item}
-          initialState={item == currentSelected ? true : false}
+          initialState={item == currentSelected}
           key={index}
           onClick={() => {
             clickHandler(item);
