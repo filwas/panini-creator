@@ -22,7 +22,7 @@ const Dices = (props: DicesProps) => {
         transform="rotate(-15 2.87192 11.6157)"
         fill="white"
         stroke="black"
-        stroke-width="0.5"
+        strokeWidth="0.5"
       />
       <rect
         x="11.6048"
@@ -32,7 +32,7 @@ const Dices = (props: DicesProps) => {
         transform="rotate(35.1014 11.6048 1.95498)"
         fill="white"
         stroke="black"
-        stroke-width="0.5"
+        strokeWidth="0.5"
       />
       <circle cx="14.0657" cy="6.10669" r="0.5" fill="black" />
       <circle cx="11.0657" cy="7.10669" r="0.5" fill="black" />

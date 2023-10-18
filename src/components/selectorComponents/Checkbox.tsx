@@ -26,6 +26,7 @@ const Checkbox = (props: CheckboxProps) => {
       {options.map((item, index) => (
         <SingleCheckbox
           text={item}
+          key={index}
           isOn={fieldValues[index]}
           toggleFunc={() => toggleItemState(index)}
         />

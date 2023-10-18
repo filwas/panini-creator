@@ -1,21 +1,35 @@
-import { describe, it, expect } from 'vitest';
-import * as React from 'react';
-import { render } from '@testing-library/react';
-import  App  from './App';
+import { describe, it, expect } from "vitest";
+import * as React from "react";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import {App, AppRoutes} from "./App";
 
-
-describe('something truthy and falsy', () => {
-  it('true to be true', () => {
-    expect(true).toBe(true);
+describe("Test form submitting", () => {
+  it("should change default values of each form element before clicking Place order button", () => {
+    render(
+      <MemoryRouter initialEntries={["/form"]}>
+        <AppRoutes />
+      </MemoryRouter>
+    );
+      screen.debug()
   });
 
-  it('false to be false', () => {
-    expect(false).toBe(false);
+  it("should return image mock of form payload when form validation passes when Place order button is clicked", () => {
+    /*render(
+      <MemoryRouter initialEntries={["/form"]}>
+        <AppRoutes />
+      </MemoryRouter>
+    );
+      screen.debug()*/
   });
-});
 
-describe('App', () => {
-  it('renders App component', () => {
-    render(<App />);
+  it("should redirect to Success screen when Place order button is clicked", () => {
+    /*render(
+      <MemoryRouter initialEntries={["/form"]}>
+        <AppRoutes />
+      </MemoryRouter>
+    );
+      screen.debug()*/
   });
+
 });

@@ -17,7 +17,7 @@ const DropdownArrow = (props: DropdownArrowProps) => {
       <path
         d="M0.426453 1L7.31983 8L14.2132 1"
         stroke="black"
-        stroke-width="0.5"
+        strokeWidth="0.5"
       />
     </svg>
   );
