@@ -55,7 +55,7 @@ const MultiselectItem = (props: MultiselectItemProps) => {
   );
 
   return (
-    <div className={selectStyle} onClick={props.toggleFunc}>
+    <div className={selectStyle} onClick={props.toggleFunc} data-testid={props.isOn ? "textValue" : "notSelected"}>
       {props.text}
     </div>
   );

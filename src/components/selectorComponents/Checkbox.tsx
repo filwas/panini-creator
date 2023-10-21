@@ -43,7 +43,7 @@ interface SingleCheckboxProps {
 
 const SingleCheckbox = (props: SingleCheckboxProps) => {
   return (
-    <label className={styles.checkboxTextWrap}>
+    <label className={styles.checkboxTextWrap} data-testid={props.isOn ? "textValue" : "notSelected"}>
       <input type="checkbox" hidden={true} onChange={props.toggleFunc} />
       {props.text}
       <div className={styles.checkboxBoxWrap}>

@@ -35,6 +35,7 @@ const TextInput = (props: TextInputProps) => {
         placeholder={props.textOptions.placeholder}
         value={context.watch(props.formField)}
         onChange={handleChange}
+        data-testid={"textValue"}
       />
       {error && (
         <div className={styles.errorText}>{props.textOptions.errorMessage}</div>

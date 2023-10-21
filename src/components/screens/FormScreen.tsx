@@ -28,7 +28,7 @@ import { data } from "../../data/Data";
 
 function FormScreen() {
   const defaultValues: PaniniFormData = {
-    sandwichName: [""],
+    sandwichName: ["sss"],
     cutlery: [],
     napkins: [],
     bread: [data(FormDataType.Bread)[0]],
@@ -49,7 +49,7 @@ function FormScreen() {
   const [refresher, toggleRefresher] = useState(false);
   const onSubmit: SubmitHandler<PaniniFormData> = async (
     data: PaniniFormData
-  ) => {
+  ) => {       
     try {
       const parsedData = paniniSchema.parse(
         formatData(data)
@@ -61,6 +61,7 @@ function FormScreen() {
       }, 1000);
     } catch (error) {
       alert(fromZodError(error)); //using a library to make the error message readable to user
+      
     }
   };
 

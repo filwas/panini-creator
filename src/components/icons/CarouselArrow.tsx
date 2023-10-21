@@ -10,6 +10,7 @@ interface CarouselArrowProps {
 const CarouselArrow = (props: CarouselArrowProps) => {
   return (
     <svg
+      data-testid={"arrow-" + props.direction}
       className={props.className}
       width="12"
       height="22"

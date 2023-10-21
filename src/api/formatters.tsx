@@ -12,14 +12,13 @@ export function formatData(data: PaniniFormData) {
         cheese: data.cheese,
         meat: data.meat,
         dressing: data.dressing,
-        vegetables:
-          data.vegetables[0].length > 0 ? data.vegetables[0].split(",") : [],
+        vegetables: data.vegetables.filter(value => value != ""),
       },
       extras: {
         egg: data.egg,
-        spreads: data.spreads[0].length > 0 ? data.spreads[0].split(",") : [],
+        spreads: data.spreads.filter(value => value != ""),
         serving: data.serving.toString(),
-        topping: data.topping[0].length > 0 ? data.topping[0] : null,
+        topping: data.topping[0] ? data.topping[0] : null,
       },
     };
   
