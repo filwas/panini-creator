@@ -28,7 +28,7 @@ import { data } from "../../data/Data";
 
 function FormScreen() {
   const defaultValues: PaniniFormData = {
-    sandwichName: ["sss"],
+    sandwichName: [""],
     cutlery: [],
     napkins: [],
     bread: [data(FormDataType.Bread)[0]],
@@ -50,11 +50,11 @@ function FormScreen() {
   const onSubmit: SubmitHandler<PaniniFormData> = async (
     data: PaniniFormData
   ) => {       
-    try {
+    try {      
       const parsedData = paniniSchema.parse(
         formatData(data)
       ) as SandwichPayload;
-      const serverResponse = await postPayload(parsedData);
+      const serverResponse = await postPayload(parsedData);      
       setisBeingTurnedOff(true);
       setTimeout(() => {
         navigate("/success", { state: { imageUrl: serverResponse.imageUrl } });

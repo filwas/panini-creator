@@ -41,7 +41,7 @@ function FormModuleFinal(props: FormModuleFinalProps) {
         selector={SelectorType.Checkbox}
       />
       <div className={styles.lastMargin} />
-      <button className={styles.placeOrder} onClick={props.onOrder}>
+      <button className={styles.placeOrder} onClick={props.onOrder} data-testid={"submitButton"}>
         place order
       </button>
       <button className={styles.startAgain} onClick={props.onReset}>

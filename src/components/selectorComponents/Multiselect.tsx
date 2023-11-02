@@ -18,7 +18,6 @@ const Multiselect = (props: MultiselectProps) => {
 
   const toggleItemState = (index: number) => {
     context.setValue(`${props.formField}[${index}]`, fieldValues[index] ? "" : options[index])
-
     refreshState(!refresher)
   };
 

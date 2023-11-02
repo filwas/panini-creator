@@ -25,7 +25,7 @@ const TextInput = (props: TextInputProps) => {
     } else {
       setError(false);
     }
-    context.setValue(`${props.formField}[0]`, newValue)
+    context.setValue(`${props.formField}`, newValue)
   };
   return (
     <div className={styles.wrapper}>
