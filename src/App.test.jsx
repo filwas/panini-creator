@@ -14,6 +14,7 @@ import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route } from "react-router-dom";
 import { AppRoutes, App } from "./App";
 import FormScreen from "./components/screens/FormScreen";
+import { formatData } from "./api/formatters";
 
 const fetchMock = createFetchMock(vi);
 beforeEach(() => {
@@ -180,3 +181,45 @@ it("should redirect to Success screen when Place order button is clicked", async
   expect(reorder).toBeInTheDocument()
 
 });
+
+it("should randomize all form configuration parameters when RANDOMIZE PANINI button is clicked", async () => {
+  fetchMock.mockResponse(JSON.stringify({ imageUrl: "someURL" }));
+
+  const defaultForm = {
+    sandwichName: [""],
+    cutlery: [],
+    napkins: [],
+    bread: ["WHEAT"],
+    cheese: ["EDAM"],
+    meat: ["SALAMI"],
+    dressing: ["OLIVE OIL"],
+    vegetables: [],
+    egg: ["FRIED EGG"],
+    spreads: [],
+    serving: ["GRILLED"],
+    topping: [],
+  };
+
+  const defaultValues = formatData(defaultForm)
+
+  render(
+    <MemoryRouter initialEntries={["/form"]}>
+      <AppRoutes />
+    </MemoryRouter>
+  );
+
+  const randomButton = screen.getByTestId(/randomize-button/);
+  await userEvent.click(randomButton)
+
+  const postButton = screen.getByTestId(/submitButton/);
+  await userEvent.click(postButton);
+
+  expect(fetchMock).toHaveBeenCalledTimes(1)
+
+  const callBodyBuffer = await fetchMock.mock.calls[0][1].body
+  const callValues = JSON.parse(callBodyBuffer)
+
+
+  expect(callValues).not.toEqual(defaultValues)
+
+})

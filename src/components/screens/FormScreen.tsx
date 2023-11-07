@@ -91,7 +91,7 @@ function FormScreen() {
       <div className={topFormWrapper}>
         <div className={styles.header}>
           Panini Creator
-          <button className={styles.randomizeButton} onClick={randomHandler}>
+          <button className={styles.randomizeButton} onClick={randomHandler} data-testid={"randomize-button"}>
             <Dices className={styles.dices} />
             randomize panini
           </button>
