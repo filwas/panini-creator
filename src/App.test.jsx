@@ -12,7 +12,7 @@ import {
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route } from "react-router-dom";
-import { AppRoutes } from "./App";
+import { AppRoutes, App } from "./App";
 import FormScreen from "./components/screens/FormScreen";
 
 const fetchMock = createFetchMock(vi);
@@ -164,16 +164,19 @@ it("should return image mock of form payload when form validation passes when Pl
 });
 
 it("should redirect to Success screen when Place order button is clicked", async () => {
+  fetchMock.mockResponse(JSON.stringify({ imageUrl: "someURL" }));
+
   render(
-      <MemoryRouter initialEntries={['/form']}>
-        <AppRoutes />
-        <Route path="/success">Success Page</Route> 
-      </MemoryRouter>
-    );
-    
-      const button = screen.getByTestId("submitButton")
-      fireEvent.click(button)
-      
-      
-      //expect(history.location.pathname).toBe('/success');
+    <MemoryRouter initialEntries={['/form']}>
+      <AppRoutes />
+    </MemoryRouter>
+  );
+  
+  
+  const button = screen.getByTestId('submitButton');
+  await userEvent.click(button);
+
+    const reorder = await screen.findByText("Panini ordered")
+  expect(reorder).toBeInTheDocument()
+
 });
