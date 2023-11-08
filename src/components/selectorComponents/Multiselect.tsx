@@ -18,7 +18,6 @@ const Multiselect = (props: MultiselectProps) => {
 
   const toggleItemState = (index: number) => {
     context.setValue(`${props.formField}[${index}]`, fieldValues[index] ? "" : options[index])
-
     refreshState(!refresher)
   };
 
@@ -55,7 +54,7 @@ const MultiselectItem = (props: MultiselectItemProps) => {
   );
 
   return (
-    <div className={selectStyle} onClick={props.toggleFunc}>
+    <div className={selectStyle} onClick={props.toggleFunc} data-testid={props.isOn ? "textValue" : "notSelected"}>
       {props.text}
     </div>
   );

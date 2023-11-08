@@ -55,7 +55,7 @@ function Ingredient(props: IngredientProps) {
 
   if (props.togglable) {
     return (
-      <div className={wrapperStyle}>
+      <div className={wrapperStyle} data-testid={"ingredient-"+props.dataType+"-"+props.selector}> 
         <div className={styles.nameToggleWrap}>
           <div className={nameStyle}>{props.name}</div>
           <Toggle onStateChange={toggleHandler} state={toggleState} />
@@ -89,7 +89,7 @@ function Ingredient(props: IngredientProps) {
     );
   } else {
     return (
-      <div className={wrapperStyle}>
+      <div className={wrapperStyle} data-testid={"ingredient-"+props.dataType+"-"+props.selector}>
         <div className={nameStyle}>{props.name}</div>
         {selectorHelper(props.dataType, props.selector, 0, props.textOptions)}
       </div>

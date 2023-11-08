@@ -25,7 +25,7 @@ const TextInput = (props: TextInputProps) => {
     } else {
       setError(false);
     }
-    context.setValue(`${props.formField}[0]`, newValue)
+    context.setValue(`${props.formField}`, newValue)
   };
   return (
     <div className={styles.wrapper}>
@@ -35,6 +35,7 @@ const TextInput = (props: TextInputProps) => {
         placeholder={props.textOptions.placeholder}
         value={context.watch(props.formField)}
         onChange={handleChange}
+        data-testid={"textValue"}
       />
       {error && (
         <div className={styles.errorText}>{props.textOptions.errorMessage}</div>

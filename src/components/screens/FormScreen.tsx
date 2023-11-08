@@ -50,19 +50,21 @@ function FormScreen() {
   const [refresher, toggleRefresher] = useState(false);
   const onSubmit: SubmitHandler<PaniniFormData> = async (
     data: PaniniFormData
-  ) => {
-    try {
+  ) => {       
+    try {      
       const parsedData = paniniSchema.parse(
         formatData(data)
       ) as SandwichPayload;
 
-      const serverResponse = await postPayload(parsedData);
+      const serverResponse = await postPayload(parsedData);      
+
       setisBeingTurnedOff(true);
       setTimeout(() => {
         navigate("/success", { state: { imageUrl: serverResponse.imageUrl } });
       }, 1000);
     } catch (error) {
       alert(fromZodError(error)); //using a library to make the error message readable to user
+      
     }
   };
 

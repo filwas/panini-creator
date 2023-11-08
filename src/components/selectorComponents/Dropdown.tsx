@@ -50,18 +50,20 @@ function Dropdown(props: DropdownProps) {
       <div className={firstBarWrapper}>
         <div className={styles.invisibleSapcer} />
         <button className={dropdownToggle} onClick={toggleDropdown}>
-          {displayValue}
+        <p data-testid={"dropdown-"+props.formField+"-"+"textValue"}>{displayValue}</p>
         </button>
         <DropdownArrow className={dropdownArrow} />
       </div>
       {isOpen && (
         <div className={dropdownOptionsWrapper}>
           {options.map(
-            (option) =>
+            (option, index) =>
               option !== displayValue && (
                 <div
+                  data-testid={"dropdown-"+props.formField+"-option-"+index}
                   className={dropdownOption}
                   onClick={() => selectOption(option)}
+                  key={index}
                 >
                   {option}
                 </div>

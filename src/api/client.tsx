@@ -17,7 +17,7 @@ export const postPayload = async (payload: SandwichPayload) => {
   
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
-      } else {
+      } else {        
         return await response.json();
       }
     } catch (error) {

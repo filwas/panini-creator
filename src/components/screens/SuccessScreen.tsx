@@ -33,7 +33,7 @@ function SuccessScreen() {
       <Circles animationStarted={animationStarted} />
       <div className={styles.textContainer}>
         <h1>Panini ordered</h1>
-        <button className={styles.button} onClick={handleBeginClick}>
+        <button className={styles.button} onClick={handleBeginClick} data-testid={"reorder-button"}>
           Start again
         </button>
       </div>

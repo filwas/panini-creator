@@ -13,5 +13,5 @@
       "*": ["types/*"]               // Map all imports to the 'types' folder for resolution
     }
   },
-  "include": ["src", "types"]
+  "include": ["src", "types", "tests/App.test.jsx"]
 }

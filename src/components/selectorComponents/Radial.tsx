@@ -13,9 +13,11 @@ const Radial = (props: RadialProps) => {
   const context = useFormContext();
   const options = data(props.formField);
   const currentSelected = context.watch(props.formField);
+  const [refresher, refreshState] = useState(true)
 
   const clickHandler = (item: string) => {
     context.setValue(`${props.formField}[0]`, item);
+    refreshState(!refresher)
   };
 
   return (
@@ -44,7 +46,7 @@ interface SingleRadialProps {
 
 const SingleRadial = (props: SingleRadialProps) => {
   return (
-    <div className={styles.radialNameWrap} onClick={props.onClick}>
+    <div className={styles.radialNameWrap} onClick={props.onClick} data-testid={props.initialState ? "textValue" : "notSelected"}>
       <div className={styles.radialCircle}>
         <div className={classNames(props.initialState && styles.radialDot)} />
       </div>

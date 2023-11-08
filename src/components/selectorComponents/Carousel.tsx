@@ -33,8 +33,9 @@ const Carousel = (props: CarouselProps) => {
   const wheat = context.watch(props.formField)[props.ID] == "WHEAT";
 
   return (
-    <div className={styles.carouselWrapper}>
+    <div className={styles.carouselWrapper} >
       <CarouselArrow
+      data-testid={"carousel-arrow-left"}
         className={styles.genericArrow}
         direction={Direction.Left}
         onClick={() => arrowClick(Direction.Left)}
@@ -42,9 +43,10 @@ const Carousel = (props: CarouselProps) => {
       <div className={styles.textWrapper}>
         {grain && <Grain />}
         {wheat && <Wheat />}
-        {displayValue}
+        <p data-testid={"carousel-"+props.formField+"-textValue"}>{displayValue}</p>
       </div>
       <CarouselArrow
+      data-testid={"carousel-arrow-right"}
         className={styles.genericArrow}
         direction={Direction.Right}
         onClick={() => arrowClick(Direction.Right)}
