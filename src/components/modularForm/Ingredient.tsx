@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import styles from "./Ingredient.module.css";
 import "@fontsource/instrument-serif";
@@ -43,6 +44,7 @@ function Ingredient(props: IngredientProps) {
   function toggleHandler() {
     setToggleState((previousState) => !previousState);
   }
+
 
   const wrapperStyle = classNames(styles.ingredientWrapper);
   const nameStyle = classNames(styles.name);

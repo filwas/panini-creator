@@ -46,6 +46,7 @@ function FormScreen() {
   });
   const { handleSubmit, reset } = formMethods;
   const navigate = useNavigate();
+
   const [refresher, toggleRefresher] = useState(false);
   const onSubmit: SubmitHandler<PaniniFormData> = async (
     data: PaniniFormData
@@ -54,7 +55,9 @@ function FormScreen() {
       const parsedData = paniniSchema.parse(
         formatData(data)
       ) as SandwichPayload;
+
       const serverResponse = await postPayload(parsedData);      
+
       setisBeingTurnedOff(true);
       setTimeout(() => {
         navigate("/success", { state: { imageUrl: serverResponse.imageUrl } });
@@ -65,6 +68,7 @@ function FormScreen() {
     }
   };
 
+
   const randomHandler = () => {
     reset(randomForm());
     toggleRefresher(!refresher);
@@ -72,12 +76,15 @@ function FormScreen() {
 
   const handleStartAgain = () => {
     reset(defaultValues);
+
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
+
     toggleRefresher(!refresher);
   };
+
 
   const [isBeingTurnedOff, setisBeingTurnedOff] = useState(false);
 
@@ -96,11 +103,12 @@ function FormScreen() {
             randomize panini
           </button>
         </div>
-        <div className={styles.formElementsContainer}>
+        <div className={styles.formElementsContainer} key={formReset}>
           <FormModuleBase name="Configure Base" />
           <FormModuleExtras name="Configure Extras" />
           <FormModuleFinal
             name="Finalize Order"
+            onReset={handleReset}
             onOrder={handleSubmit(onSubmit)}
             onReset={handleStartAgain}
           />
