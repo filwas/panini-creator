@@ -103,12 +103,11 @@ function FormScreen() {
             randomize panini
           </button>
         </div>
-        <div className={styles.formElementsContainer} key={formReset}>
+        <div className={styles.formElementsContainer} >
           <FormModuleBase name="Configure Base" />
           <FormModuleExtras name="Configure Extras" />
           <FormModuleFinal
             name="Finalize Order"
-            onReset={handleReset}
             onOrder={handleSubmit(onSubmit)}
             onReset={handleStartAgain}
           />
