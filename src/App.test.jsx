@@ -255,7 +255,9 @@ it("should reset all form configuration values when START AGAIN button is clicke
   const randomValuesAmount = (await screen.findAllByTestId(/textValue/i))
     .length;
 
-  expect(defaultValuesAmount).not.toEqual(randomValuesAmount);//
+
+  expect(defaultValuesAmount).not.toEqual(randomValuesAmount);
+
 
   const resetButton = screen.getByTestId(/resetButton/i);
   await userEvent.click(resetButton);

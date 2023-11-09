@@ -103,7 +103,9 @@ function FormScreen() {
             randomize panini
           </button>
         </div>
-        <div className={styles.formElementsContainer} >
+
+        <div className={styles.formElementsContainer}>
+
           <FormModuleBase name="Configure Base" />
           <FormModuleExtras name="Configure Extras" />
           <FormModuleFinal

@@ -11,4 +11,5 @@ export default defineConfig({
     setupFiles: './tests/setup.js',
   },
   base: "/panini-creator/"
+
 });
