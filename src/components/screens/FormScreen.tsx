@@ -60,7 +60,7 @@ function FormScreen() {
 
       setisBeingTurnedOff(true);
       setTimeout(() => {
-        navigate("/success", { state: { imageUrl: serverResponse.imageUrl } });
+        navigate("/panini-creator/success", { state: { imageUrl: serverResponse.imageUrl } });
       }, 1000);
     } catch (error) {
       alert(fromZodError(error)); //using a library to make the error message readable to user
