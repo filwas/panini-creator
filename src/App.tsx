@@ -10,9 +10,9 @@ export function AppRoutes() {
   return (
     <div className={styles.mainContainer}>
       <Routes>
-        <Route path="/" element={<SplashScreen />} />
-        <Route path="/form" element={<FormScreen />} />
-        <Route path="/success" element={<SuccessScreen />} />
+        <Route path="/panini-creator/" element={<SplashScreen />} />
+        <Route path="/panini-creator/form" element={<FormScreen />} />
+        <Route path="/panini-creator/success" element={<SuccessScreen />} />
       </Routes>
     </div>
   );
