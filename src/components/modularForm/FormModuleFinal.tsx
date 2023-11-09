@@ -42,7 +42,7 @@ function FormModuleFinal(props: FormModuleFinalProps) {
       <button className={styles.placeOrder} onClick={props.onOrder} data-testid={"submitButton"}>
         place order
       </button>
-      <button className={styles.startAgain} onClick={props.onReset}>
+      <button className={styles.startAgain} onClick={props.onReset} data-testid={"resetButton"}>
         start again
       </button>
     </div>

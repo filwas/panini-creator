@@ -156,10 +156,10 @@ it("should return image mock of form payload when form validation passes when Pl
   const postButton = screen.getByTestId(/submitButton/);
   await userEvent.click(postButton);
 
-  expect(fetchMock).toHaveBeenCalledTimes(1)
+  expect(fetchMock).toHaveBeenCalledTimes(1);
 
   const responseBodyBuffer = await fetchMock.mock.results[0].value.body;
-  const responseObject = JSON.parse(responseBodyBuffer.toString())
+  const responseObject = JSON.parse(responseBodyBuffer.toString());
 
   expect(responseObject).toEqual({ imageUrl: "someURL" });
 });
@@ -168,18 +168,16 @@ it("should redirect to Success screen when Place order button is clicked", async
   fetchMock.mockResponse(JSON.stringify({ imageUrl: "someURL" }));
 
   render(
-    <MemoryRouter initialEntries={['/form']}>
+    <MemoryRouter initialEntries={["/form"]}>
       <AppRoutes />
     </MemoryRouter>
   );
-  
-  
-  const button = screen.getByTestId('submitButton');
+
+  const button = screen.getByTestId("submitButton");
   await userEvent.click(button);
 
-    const reorder = await screen.findByText("Panini ordered")
-  expect(reorder).toBeInTheDocument()
-
+  const reorder = await screen.findByText("Panini ordered");
+  expect(reorder).toBeInTheDocument();
 });
 
 it("should randomize all form configuration parameters when RANDOMIZE PANINI button is clicked", async () => {
@@ -200,7 +198,7 @@ it("should randomize all form configuration parameters when RANDOMIZE PANINI but
     topping: [],
   };
 
-  const defaultValues = formatData(defaultForm)
+  const defaultValues = formatData(defaultForm);
 
   render(
     <MemoryRouter initialEntries={["/form"]}>
@@ -209,17 +207,70 @@ it("should randomize all form configuration parameters when RANDOMIZE PANINI but
   );
 
   const randomButton = screen.getByTestId(/randomize-button/);
-  await userEvent.click(randomButton)
+  await userEvent.click(randomButton);
 
   const postButton = screen.getByTestId(/submitButton/);
   await userEvent.click(postButton);
 
-  expect(fetchMock).toHaveBeenCalledTimes(1)
+  expect(fetchMock).toHaveBeenCalledTimes(1);
 
-  const callBodyBuffer = await fetchMock.mock.calls[0][1].body
-  const callValues = JSON.parse(callBodyBuffer)
+  const callBodyBuffer = await fetchMock.mock.calls[0][1].body;
+  const callValues = JSON.parse(callBodyBuffer);
 
+  expect(callValues).not.toEqual(defaultValues);
+});
 
-  expect(callValues).not.toEqual(defaultValues)
+it("should reset all form configuration values when START AGAIN button is clicked", async () => {
+  fetchMock.mockResponse(JSON.stringify({ imageUrl: "someURL" }));
 
-})
+  const defaultForm = {
+    sandwichName: [""],
+    cutlery: [],
+    napkins: [],
+    bread: ["WHEAT"],
+    cheese: ["EDAM"],
+    meat: ["SALAMI"],
+    dressing: ["OLIVE OIL"],
+    vegetables: [],
+    egg: ["FRIED EGG"],
+    spreads: [],
+    serving: ["GRILLED"],
+    topping: [],
+  };
+
+  const defaultValues = formatData(defaultForm);
+
+  render(
+    <MemoryRouter initialEntries={["/form"]}>
+      <AppRoutes />
+    </MemoryRouter>
+  );
+
+  const defaultValuesAmount = (await screen.findAllByTestId(/textValue/i))
+    .length;
+
+  const randomButton = screen.getByTestId(/randomize-button/);
+  await userEvent.click(randomButton);
+
+  const randomValuesAmount = (await screen.findAllByTestId(/textValue/i))
+    .length;
+
+  expect(defaultValuesAmount).not.toEqual(randomValuesAmount);
+
+  const resetButton = screen.getByTestId(/resetButton/i);
+  await userEvent.click(resetButton);
+
+  const resetValuesAmount = (await screen.findAllByTestId(/textValue/i)).length;
+
+  expect(resetValuesAmount).toEqual(defaultValuesAmount);
+
+  const postButton = screen.getByTestId(/submitButton/);
+  await userEvent.click(postButton);
+
+  expect(fetchMock).toHaveBeenCalledTimes(1);
+
+  const callBodyBuffer = await fetchMock.mock.calls[0][1].body;
+  const callValues = JSON.parse(callBodyBuffer);
+
+  expect(callValues).toEqual(defaultValues);
+});
