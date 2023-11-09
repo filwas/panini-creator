@@ -12,7 +12,7 @@ function SplashScreen() {
   const handleBeginClick = () => {
     setAnimationStarted(true);
     setTimeout(() => {
-      navigate("form");
+      navigate("/form");
     }, 3000);
   };
 
