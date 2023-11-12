@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import styles from "./Ingredient.module.css";
 import "@fontsource/instrument-serif";
@@ -45,9 +44,11 @@ function Ingredient(props: IngredientProps) {
     setToggleState((previousState) => !previousState);
   }
 
-
   const wrapperStyle = classNames(styles.ingredientWrapper);
-  const nameStyle = classNames(styles.name);
+  const nameStyle = classNames(
+    styles.name,
+    props.togglable ? "" : styles.noToggle
+  );
   const adderWrapStyle = classNames(
     styles.adderWrap,
     toggleState ? "" : styles.toggleOff
@@ -55,7 +56,10 @@ function Ingredient(props: IngredientProps) {
 
   if (props.togglable) {
     return (
-      <div className={wrapperStyle} data-testid={"ingredient-"+props.dataType+"-"+props.selector}> 
+      <div
+        className={wrapperStyle}
+        data-testid={"ingredient-" + props.dataType + "-" + props.selector}
+      >
         <div className={styles.nameToggleWrap}>
           <div className={nameStyle}>{props.name}</div>
           <Toggle onStateChange={toggleHandler} state={toggleState} />
@@ -89,7 +93,10 @@ function Ingredient(props: IngredientProps) {
     );
   } else {
     return (
-      <div className={wrapperStyle} data-testid={"ingredient-"+props.dataType+"-"+props.selector}>
+      <div
+        className={wrapperStyle}
+        data-testid={"ingredient-" + props.dataType + "-" + props.selector}
+      >
         <div className={nameStyle}>{props.name}</div>
         {selectorHelper(props.dataType, props.selector, 0, props.textOptions)}
       </div>
