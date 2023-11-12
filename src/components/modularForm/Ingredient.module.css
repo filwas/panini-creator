@@ -11,13 +11,10 @@
   flex-wrap: nowrap;
   flex-direction: row;
   justify-content: space-between;
-
   width: 470px;
   min-height: 40px;
   border-top: 0.5px solid black;
   margin-top: 10px;
-
-
   user-select: none;
   padding-top: 15px;
 }
@@ -36,7 +33,7 @@
   width: 70px;
   height: 0.5px;
   background-color: black;
-  margin-top: 3px;
+  margin-top: -43px;
   margin-left: 150px;
 }
 
