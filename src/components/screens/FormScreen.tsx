@@ -48,9 +48,11 @@ function FormScreen() {
   const navigate = useNavigate();
 
   const [refresher, toggleRefresher] = useState(false);
+  const [loading, setLoading] = useState(false)
   const onSubmit: SubmitHandler<PaniniFormData> = async (
     data: PaniniFormData
-  ) => {       
+  ) => {   
+    setLoading(true);    
     try {      
       const parsedData = paniniSchema.parse(
         formatData(data)
@@ -64,8 +66,8 @@ function FormScreen() {
       }, 1000);
     } catch (error) {
       alert(fromZodError(error)); //using a library to make the error message readable to user
-      
     }
+    setLoading(false);   
   };
 
 
@@ -112,6 +114,7 @@ function FormScreen() {
             name="Finalize Order"
             onOrder={handleSubmit(onSubmit)}
             onReset={handleStartAgain}
+            loadingState={loading || isBeingTurnedOff}
           />
         </div>
       </div>

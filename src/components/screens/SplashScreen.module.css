@@ -34,7 +34,7 @@
   text-transform: uppercase;
   color: black;
   background-color: transparent;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   padding-top: 14px;
   padding-bottom: 14px;
   padding-left: 20px;
@@ -46,7 +46,7 @@
 
 .button:hover {
   transition: ease-in-out 0.3s;
-  border: 2px solid black;
+  border: 1px solid black;
 }
 
 h1 {

@@ -42,12 +42,20 @@
   height: 44px;
   text-decoration: underline transparent;
   transition: text-decoration 300ms ease;
+  transition: background-color 300ms ease;
 }
+
 
 /*Apparently you can't transition text-decoration's visibility, but you can do it with colour.*/
 .placeOrder:hover {
   text-decoration-color: white;
 }
+
+.loadingOrder{
+  background-color: rgb(73, 73, 73);
+  text-decoration: none;
+}
+
 
 .startAgain {
   font-family: Oxygen Mono;
